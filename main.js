@@ -1,24 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {Hello} from './Hello'
+import reducer from './reducer'
+import {createStore} from 'redux'
+import {Provider} from 'react-redux'
+import {AppContainer as App} from './App'
 
-class App extends React.Component {
-  state = {
-    message: 'universe'
-  }
+const store = createStore(reducer)
 
-  handleChange(e) {
-    this.setState({ message: e.target.value })
-  }
-
-  render() {
-    return (
-      <div>
-        <input type="text" onChange={::this.handleChange} />
-        <Hello name={this.state.message} />
-      </div>
-    )
-  }
-}
-
-ReactDOM.render(<App/>, document.getElementById('app'))
+ReactDOM.render((
+  <div>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </div>
+), document.getElementById("app"))

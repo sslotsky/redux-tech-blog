@@ -31,7 +31,7 @@ class App extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    name: state.get('name')
+    name: state.app.get('name')
   }
 }
 

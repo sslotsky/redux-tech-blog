@@ -1,10 +1,13 @@
 import React from 'react'
-import { Router, Route, browserHistory } from 'react-router'
-import { AppContainer } from '../app/App'
+import { Router, Route, IndexRoute, browserHistory } from 'react-router'
+import App from '../app/App'
+import EditProfile from '../app/modules/profile/Edit'
 
 export default (
   <Router history={browserHistory}>
-    <Route path="/" component={AppContainer} />
+    <Route path="/" component={App}>
+      <IndexRoute component={EditProfile} />
+    </Route>
   </Router>
 )
 

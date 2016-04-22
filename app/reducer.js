@@ -1,16 +1,8 @@
-import {Map} from 'immutable'
+import { profile } from './modules/profile/reducers'
+import { combineReducers } from 'redux'
+import { routeReducer } from 'redux-simple-router'
 
-const defaultState = Map({
-  name: 'universe'
+export default combineReducers({
+  profile: profile,
+  routing: routeReducer
 })
-
-export default function reducer(state=defaultState, action) {
-  switch (action.type) {
-    case 'NAME_UPDATED':
-      return state.merge({
-        name: action.name
-      })
-    default: return state
-  }
-}
-

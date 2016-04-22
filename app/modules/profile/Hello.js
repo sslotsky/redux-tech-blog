@@ -1,6 +1,6 @@
-import React, {PropTypes} from 'react';
- 
-export class Hello extends React.Component {
+import React, { PropTypes, Component } from 'react';
+
+export default class extends Component {
   static propTypes = {
     name: PropTypes.string
   }

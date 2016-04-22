@@ -1,4 +1,5 @@
 import React, {PropTypes, Component} from 'react'
+import { Link } from 'react-router'
 
 export default class extends Component {
   render() {
@@ -11,10 +12,10 @@ export default class extends Component {
           <nav className='nav'>
             <ul className='nav-list'>
               <li className='nav-item'>
-                <a className='pure-button' href='http://purecss.io'>Pure</a>
+                <Link className='pure-button' to='/profile'>Profile</Link>
               </li>
               <li className='nav-item'>
-                <a className='pure-button' href='http://yuilibrary.com'>YUI Library</a>
+                <Link className='pure-button' to='/'>Home</Link>
               </li>
             </ul>
           </nav>

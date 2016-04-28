@@ -1,1 +1,27 @@
-@import './vendor/styles/pure-blog.css'
+@import './vendor/styles/pure-blog.css';
+@import './node_modules/codemirror/theme/erlang-dark.css';
+@import './node_modules/codemirror/lib/codemirror.css';
+
+.button-success,
+.button-error,
+.button-warning,
+.button-secondary {
+  color: white;
+  border-radius: 4px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.button-success {
+  background: rgb(28, 184, 65); /* this is a green */
+}
+
+.button-secondary {
+  background: rgb(66, 184, 221); /* this is a light blue */
+}
+
+.button-list {
+  .pure-button {
+    margin: 5px;
+  }
+}
+

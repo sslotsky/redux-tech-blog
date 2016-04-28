@@ -12,7 +12,7 @@ export default class extends Component {
           <nav className='nav'>
             <ul className='nav-list'>
               <li className='nav-item'>
-                <Link className='pure-button' to='/profile'>Profile</Link>
+                <Link className='pure-button' to='/posts/new'>New Post</Link>
               </li>
               <li className='nav-item'>
                 <Link className='pure-button' to='/'>Home</Link>

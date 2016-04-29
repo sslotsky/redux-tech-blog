@@ -10,18 +10,22 @@ export class Snippet extends Component {
     text: PropTypes.object
   }
 
+  changeLanguage(e) {
+    this.props.language.onChange(e.target.value)
+  }
+
   handleChange(text) {
     this.props.text.onChange(text)
   }
 
-  changeLanguage(e) {
-    this.props.language.onChange(e.target.value)
+  shouldComponentUpdate(nextProps) {
+    return this.props.text.value != nextProps.text.value || this.props.language.value != nextProps.language.value
   }
 
   render() {
     return (
       <div>
-        <select id={this.props.language.name} value={this.props.language.value} onChange={::this.changeLanguage}>
+        <select value={this.props.language.value} onChange={::this.changeLanguage}>
           <option value='jsx'>JSX</option>
           <option value='javascript'>JavaScript</option>
           <option value='ruby'>Ruby</option>

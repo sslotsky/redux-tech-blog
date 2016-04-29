@@ -1,6 +1,12 @@
 import React, { PropTypes, Component } from 'react'
 import { reduxForm, addArrayValue } from 'redux-form'
 import { Snippet } from './Snippet'
+import { Markdown } from './Markdown'
+
+const components = {
+  snippet: Snippet,
+  markdown: Markdown
+}
 
 class Form extends Component {
   static propTypes = {
@@ -9,9 +15,10 @@ class Form extends Component {
 
   blocks() {
     return this.props.fields.blocks.map((b, i) => {
+      const Component = components[b.format.value]
       return (
         <div key={`blocks-${i}`}>
-          <Snippet {...b} />
+          <Component {...b} />
           <hr />
         </div>
       )
@@ -29,6 +36,7 @@ class Form extends Component {
         </div>
         <div className='button-list'>
           <a className='pure-button button-secondary' onClick={this.props.addSnippet}>Add Snippet</a>
+          <a className='pure-button button-secondary' onClick={this.props.addMarkdown}>Add Markdown</a>
         </div>
       </form>
     )
@@ -43,5 +51,6 @@ export default reduxForm({
     'blocks[].language'
   ]
 }, undefined, {
-  addSnippet: () => addArrayValue('post', 'blocks', { format: 'snippet', language: 'jsx' })
+  addSnippet: () => addArrayValue('post', 'blocks', { format: 'snippet', language: 'jsx' }),
+  addMarkdown: () => addArrayValue('post', 'blocks', { format: 'markdown' })
 })(Form)

@@ -41,11 +41,6 @@ const snippet2 = `
     </Router>
   )
 `
-const snippet3 = `
-  def foo
-    'bar'
-  end
-`
 
 export default {
     blocks: [{
@@ -56,10 +51,6 @@ export default {
     format: 'snippet',
     language: 'jsx',
     text: snippet2
-  }, {
-    format: 'snippet',
-    language: 'ruby',
-    text: snippet3
   }]
 }
 

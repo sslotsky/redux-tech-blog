@@ -42,6 +42,24 @@ const snippet2 = `
   )
 `
 
+const snippet3 = `
+## This is a heading
+
+This is some **bold** and _italic_ text fodoisjoidjfoijdoijdfoijoeijofdijfoeijfoidjofiejfodijfoeifjoj
+
+1. This
+2. Is
+3. An
+4. Ordered
+5. List
+
+* This
+* Is
+* An
+* Unordered
+* List
+`
+
 export default {
     blocks: [{
     format: 'snippet',
@@ -51,6 +69,9 @@ export default {
     format: 'snippet',
     language: 'jsx',
     text: snippet2
+  }, {
+    format: 'markdown',
+    text: snippet3
   }]
 }
 

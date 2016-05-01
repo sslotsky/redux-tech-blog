@@ -35,7 +35,9 @@ class Markdown extends Component {
 
   render() {
     return (
-      <ReactMarkdown source={this.props.text} />
+      <div className='md'>
+        <ReactMarkdown source={this.props.text} />
+      </div>
     )
   }
 }

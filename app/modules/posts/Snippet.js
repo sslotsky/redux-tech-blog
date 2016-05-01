@@ -1,10 +1,7 @@
 import React, { PropTypes, Component } from 'react'
-import CodeMirror from 'react-codemirror'
-import 'codemirror/mode/jsx/jsx'
-import 'codemirror/mode/javascript/javascript'
-import 'codemirror/mode/ruby/ruby'
+import { Snippet } from './Show'
 
-export class Snippet extends Component {
+export default class extends Component {
   static propTypes = {
     language: PropTypes.object,
     text: PropTypes.object
@@ -23,6 +20,7 @@ export class Snippet extends Component {
   }
 
   render() {
+    const { language, text } = this.props
     return (
       <div>
         <select value={this.props.language.value} onChange={::this.changeLanguage}>
@@ -30,7 +28,10 @@ export class Snippet extends Component {
           <option value='javascript'>JavaScript</option>
           <option value='ruby'>Ruby</option>
         </select>
-        <CodeMirror options={{ mode: this.props.language.value, theme: 'erlang-dark' }} value={this.props.text.value} onChange={::this.handleChange} />
+        <Snippet
+          language={language.value}
+          text={text.value}
+          onChange={::this.handleChange} />
       </div>
     )
   }

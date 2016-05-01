@@ -25,22 +25,30 @@
   }
 }
 
-.card {
-  padding-right: 5px;
-  padding-bottom: 5px;
-  .CodeMirror {
-    height: 100px;
-    border-radius: 5px;
-  }
-  .md {
-    height: 100px;
-    border-radius: 5px;
-    overflow: hidden;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+.card-container:hover {
+  background-color: orange
+}
+
+.card-container {
+  margin-bottom: 10px;
+  margin-right: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  .card {
+    .CodeMirror {
+      height: 100px;
+    }
+    .markdown-card {
+      background-color: white;
+      height: 100px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
   }
 }
 
 .preview .CodeMirror {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   height: auto;
 }

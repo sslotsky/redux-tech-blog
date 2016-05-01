@@ -1,8 +1,7 @@
 import React, { PropTypes, Component } from 'react'
-import CodeMirror from 'react-codemirror'
-import 'codemirror/mode/markdown/markdown'
+import { Markdown } from './Show'
 
-export class Markdown extends Component {
+export default class extends Component {
   static propTypes = {
     text: PropTypes.object
   }
@@ -16,10 +15,9 @@ export class Markdown extends Component {
   }
 
   render() {
+    const { text } = this.props
     return (
-      <div>
-        <CodeMirror options={{ mode: 'markdown', theme: 'erlang-dark' }} value={this.props.text.value} onChange={::this.handleChange} />
-      </div>
+      <Markdown text={text.value} onChange={::this.handleChange} />
     )
   }
 }

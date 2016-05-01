@@ -1,57 +1,25 @@
 import React, { PropTypes, Component } from 'react'
-import ReactMarkdown from 'react-markdown'
-import CodeMirror from 'react-codemirror'
-import 'codemirror/mode/jsx/jsx'
-import 'codemirror/mode/javascript/javascript'
-import 'codemirror/mode/ruby/ruby'
-
-class Snippet extends Component {
-  static propTypes = {
-    language: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired
-  }
-
-  options() {
-    return {
-      mode: this.props.language,
-      theme: 'erlang-dark',
-      readOnly: true,
-      scrollbarStyle: 'null',
-      viewportMargin: Infinity
-    }
-  }
-
-  render() {
-    return (
-      <CodeMirror options={this.options()} value={this.props.text} />
-    )
-  }
-}
-
-class Markdown extends Component {
-  static propTypes = {
-    text: PropTypes.string.isRequired
-  }
-
-  render() {
-    return (
-      <div className='md'>
-        <ReactMarkdown source={this.props.text} />
-      </div>
-    )
-  }
-}
-
+import { Snippet, Markdown } from './Show'
+import Cards from './Cards'
 
 class SnippetPreview extends Component {
   static propTypes = {
     language: PropTypes.object.isRequired,
     text: PropTypes.object.isRequired
   }
-  
+
+  options() {
+    return {
+      readOnly: true
+    }
+  }
+
   render() {
     return (
-      <Snippet language={this.props.language.value} text={this.props.text.value} />
+      <Snippet
+        options={this.options()}
+        language={this.props.language.value}
+        text={this.props.text.value} />
     )
   }
 }
@@ -106,30 +74,6 @@ class Blocks extends Component {
     return (
       <div>
         {this.blocks()}
-      </div>
-    )
-  }
-}
-
-class Cards extends Component {
-  static propTypes = {
-    blocks: PropTypes.array.isRequired
-  }
-
-  cards() {
-    return this.props.blocks.map((b, i) => {
-      return (
-        <div className='pure-u-1-5 card' key={`blocks-${i}`}>
-          <Block block={b} />
-        </div>
-      )
-    })
-  }
-
-  render() {
-    return (
-      <div className='pure-g cards'>
-        {this.cards()}
       </div>
     )
   }

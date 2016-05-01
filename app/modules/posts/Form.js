@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react'
 import { reduxForm, addArrayValue } from 'redux-form'
-import { Snippet } from './Snippet'
-import { Markdown } from './Markdown'
+import Snippet from './Snippet'
+import Markdown from './Markdown'
 import Preview from './Preview'
 
 const components = {

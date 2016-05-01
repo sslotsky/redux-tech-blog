@@ -37,20 +37,42 @@ class Form extends Component {
     preview.onChange(!preview.value)
   }
 
+  previewing() {
+    return this.props.fields.preview.value
+  }
+
+  previewButtonText() {
+    if (this.previewing())
+      return 'Edit'
+
+    return 'Preview'
+  }
+
+  buttonList() {
+    if (this.previewing())
+      return false
+
+    return (
+      <div className='button-list pull-right'>
+        <a className='pure-button button-secondary' onClick={this.props.addSnippet}>Add Snippet</a>
+        <a className='pure-button button-secondary' onClick={this.props.addMarkdown}>Add Markdown</a>
+      </div>
+    )
+  }
+
   render() {
     return (
       <form className='pure-form pure-form-stacked' onSubmit={this.props.handleSubmit}>
         {this.blocks()}
-        <div className='button-list'>
+        <div className='button-list pull-right'>
           <button type='submit' className='pure-button button-success'>
             Submit
           </button>
-          <a className='pure-button button-secondary' onClick={::this.togglePreview}>Preview</a>
+          <a className='pure-button button-secondary' onClick={::this.togglePreview}>
+            {this.previewButtonText()}
+          </a>
         </div>
-        <div className='button-list'>
-          <a className='pure-button button-secondary' onClick={this.props.addSnippet}>Add Snippet</a>
-          <a className='pure-button button-secondary' onClick={this.props.addMarkdown}>Add Markdown</a>
-        </div>
+        {this.buttonList()}
       </form>
     )
   }

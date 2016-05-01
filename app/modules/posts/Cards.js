@@ -39,6 +39,7 @@ const components = {
 
 class Card extends Component {
   static propTypes = {
+    index: PropTypes.number.isRequired,
     block: PropTypes.object.isRequired
   }
 
@@ -59,9 +60,9 @@ class CardList extends Component {
   cards() {
     return this.props.blocks.map((b, i) => {
       return (
-        <div className='pure-u-1-5 card-container' key={`blocks-${i}`}>
+        <div className='pure-u-1 card-container' key={`blocks-${i}`}>
           <div className='card'>
-            <Card block={b} />
+            <Card block={b} index={i} />
           </div>
         </div>
       )

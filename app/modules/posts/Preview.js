@@ -87,10 +87,10 @@ class Preview extends Component {
   render() {
     return (
       <div className='pure-g'>
-        <div className='pure-u-1'>
+        <div className='pure-u-1-5'>
           <Cards {...this.props} />
         </div>
-        <div className='pure-u-1'>
+        <div className='pure-u-4-5'>
           <Blocks {...this.props} />
         </div>
       </div>

@@ -13,7 +13,7 @@ class New extends Component {
   }
 
   initialValues() {
-    return seedData
+    return { ...seedData, preview: true }
   }
 
   render() {

@@ -4,6 +4,7 @@ import CodeMirror from 'react-codemirror'
 import 'codemirror/mode/jsx/jsx'
 import 'codemirror/mode/javascript/javascript'
 import 'codemirror/mode/ruby/ruby'
+import 'codemirror/mode/markdown/markdown'
 
 export class Snippet extends Component {
   static propTypes = {
@@ -32,10 +33,16 @@ export class Snippet extends Component {
 
 export class Markdown extends Component {
   static propTypes = {
-    text: PropTypes.string.isRequired
+    text: PropTypes.string.isRequired,
+    onChange: PropTypes.func
   }
 
   render() {
+    if (this.props.onChange)
+      return (
+        <Snippet {...this.props} language='markdown' />
+      )
+
     return (
       <ReactMarkdown source={this.props.text} />
     )

@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react'
-import { reduxForm, addArrayValue } from 'redux-form'
+import { reduxForm, addArrayValue, swapArrayValues } from 'redux-form'
 import Snippet from './Snippet'
 import Markdown from './Markdown'
 import Preview from './Preview'
@@ -18,7 +18,7 @@ class Form extends Component {
     const previewing = this.props.fields.preview.value
     if (previewing)
       return (
-        <Preview blocks={this.props.fields.blocks} />
+        <Preview {...this.props} blocks={this.props.fields.blocks} />
       )
 
     return this.props.fields.blocks.map((b, i) => {
@@ -87,6 +87,7 @@ export default reduxForm({
     'blocks[].language'
   ]
 }, undefined, {
+  swap: (i, j) => swapArrayValues('post', 'blocks', i, j),
   addSnippet: () => addArrayValue('post', 'blocks', { format: 'snippet', language: 'jsx' }),
   addMarkdown: () => addArrayValue('post', 'blocks', { format: 'markdown' })
 })(Form)

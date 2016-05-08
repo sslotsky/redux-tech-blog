@@ -1,4 +1,5 @@
 @import './vendor/styles/pure-blog.css';
+@import './vendor/styles/font-awesome/css/font-awesome.min.css';
 @import './node_modules/codemirror/theme/erlang-dark.css';
 @import './node_modules/codemirror/lib/codemirror.css';
 
@@ -40,6 +41,9 @@
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.1);
   .card {
+    &.dragging {
+      opacity: 0.5;
+    }
     .CodeMirror {
       border-radius: 5px;
       height: 100px;
@@ -62,4 +66,13 @@
 
 .pull-right {
   text-align: right;
+}
+
+.drag-preview {
+  border-radius: 5px;
+  height: 100px;
+  background-color: orange;
+  font-size: 5em;
+  color: white;
+  text-align: center;
 }

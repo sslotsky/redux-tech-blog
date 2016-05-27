@@ -2,6 +2,20 @@ import React, { PropTypes, Component } from 'react'
 import CodeMirror from 'react-codemirror'
 import 'codemirror/mode/markdown/markdown'
 
+import ReactMarkdown from 'react-markdown'
+
+export class MarkdownPreview extends Component {
+  static propTypes = {
+    text: PropTypes.object
+  }
+
+  render() {
+    return (
+      <ReactMarkdown source={this.props.text.value} />
+    )
+  }
+}
+
 export class Markdown extends Component {
   static propTypes = {
     text: PropTypes.object

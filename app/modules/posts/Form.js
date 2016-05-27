@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react'
 import { reduxForm, addArrayValue } from 'redux-form'
 import { Snippet } from './Snippet'
 import { Markdown } from './Markdown'
+import Preview from './Preview'
 
 const components = {
   snippet: Snippet,
@@ -14,7 +15,13 @@ class Form extends Component {
   }
 
   blocks() {
-    return this.props.fields.blocks.map((b, i) => {
+    const { preview, blocks } = this.props.fields
+    if (preview.value)
+      return (
+        <Preview blocks={blocks} />
+      )
+
+    return blocks.map((b, i) => {
       const Component = components[b.format.value]
       return (
         <div key={`blocks-${i}`}>
@@ -25,6 +32,16 @@ class Form extends Component {
     })
   }
 
+  togglePreview() {
+    const { preview } = this.props.fields
+    preview.onChange(!preview.value)
+  }
+
+  previewButtonText() {
+    const { preview } = this.props.fields
+    return preview.value ? 'Edit' : 'Preview'
+  }
+
   render() {
     return (
       <form className='pure-form pure-form-stacked' onSubmit={this.props.handleSubmit}>
@@ -33,6 +50,9 @@ class Form extends Component {
           <button type='submit' className='pure-button button-success'>
             Submit
           </button>
+          <a className='pure-button button-secondary' onClick={::this.togglePreview}>
+            {this.previewButtonText()}
+          </a>
         </div>
         <div className='button-list'>
           <a className='pure-button button-secondary' onClick={this.props.addSnippet}>Add Snippet</a>
@@ -46,6 +66,7 @@ class Form extends Component {
 export default reduxForm({
   form: 'post',
   fields: [
+    'preview',
     'blocks[].format',
     'blocks[].text',
     'blocks[].language'

@@ -5,37 +5,30 @@ import { getEmptyImage } from 'react-dnd-html5-backend'
 import { cardSource, cardTarget, collectSource, collectTarget } from './dragDropConfig'
 import classnames from 'classnames'
 
-class SnippetCard extends Component {
-  options() {
-    return {
-      readOnly: true,
-      scrollbarStyle: 'null',
-      viewportMargin: Infinity
-    }
+function SnippetCard({ language, text }) {
+  const options = {
+    readOnly: true,
+    scrollbarStyle: 'null',
+    viewportMargin: Infinity
   }
 
-  render() {
-    const { language, text } = this.props
-    return(
-      <Snippet
-        options={this.options()}
-        language={language.value}
-        text={text.value} />
-    )
-  }
+  return(
+    <Snippet
+      options={options}
+      language={language.value}
+      text={text.value}
+    />
+  )
 }
 
-class MarkdownCard extends Component {
-  render() {
-    const { text } = this.props
-    return (
-      <div className='markdown-card'>
-        <div className='card-content'>
-          <Markdown text={text.value} />
-        </div>
+function MarkdownCard({ text }) {
+  return (
+    <div className='markdown-card'>
+      <div className='card-content'>
+        <Markdown text={text.value} />
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 const components = {

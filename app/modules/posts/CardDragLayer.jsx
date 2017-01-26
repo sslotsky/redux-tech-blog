@@ -9,12 +9,6 @@ function collect(monitor) {
   }
 }
 
-const options = {
-  arePropsEqual(props, otherProps) {
-    debugger
-  }
-}
-
 const layerStyles = {
   position: 'fixed',
   pointerEvents: 'none',
@@ -33,11 +27,11 @@ function getItemStyles(props) {
     }
   }
 
-  var x = currentOffset.x
-  var y = currentOffset.y
-  var transform = 'translate(' + x + 'px, ' + y + 'px)'
+  const { x, y } = currentOffset
+  const transform = `translate(${x}px, ${y}px)`
+
   return {
-    transform: transform,
+    transform,
     WebkitTransform: transform
   }
 }

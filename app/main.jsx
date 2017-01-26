@@ -1,23 +1,25 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { syncHistory, } from 'redux-simple-router'
-import { hashHistory } from 'react-router'
+import { Router, browserHistory } from 'react-router'
+import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux'
 import routes from '../config/routes'
 import reducer from './reducer'
 import { compose, createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import { AppContainer as App } from './App'
 
-const reduxRouterMiddleware = syncHistory(hashHistory)
-const createStoreWithMiddleware = applyMiddleware(reduxRouterMiddleware)(createStore)
+const router = routerMiddleware(browserHistory)
+const createStoreWithMiddleware = applyMiddleware(router)(createStore)
 const store = createStoreWithMiddleware(reducer)
 
-reduxRouterMiddleware.listenForReplays(store)
+const history = syncHistoryWithStore(browserHistory, store)
 
 ReactDOM.render((
   <div>
     <Provider store={store}>
-      {routes}
+      <Router history={history}>
+        {routes}
+      </Router>
     </Provider>
   </div>
 ), document.getElementById("app"))

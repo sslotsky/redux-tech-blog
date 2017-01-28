@@ -26,6 +26,7 @@
     "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
+    "bcrypt": "^1.0.2",
     "classnames": "^2.2.5",
     "express": "^4.14.0",
     "file-loader": "^0.8.5",

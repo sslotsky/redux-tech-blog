@@ -3,8 +3,8 @@ import Sidebar from './Sidebar'
 import '../style.scss'
 
 export default ({ children }) => (
-  <div>
-    {/*<Sidebar />*/}
+  <main className="row">
+    <Sidebar />
     {children}
-  </div>
+  </main>
 )

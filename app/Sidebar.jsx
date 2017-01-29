@@ -2,7 +2,7 @@ import React, {PropTypes, Component} from 'react'
 import { Link } from 'react-router'
 
 export default () => (
-  <div className='sidebar pure-u-1 pure-u-md-1-4'>
+  <aside className="soft-quarter">
     <div className='header'>
       <h1 className='brand-title'>Redux Blog</h1>
       <h2 className='brand-tagline'>Building apps with Redux</h2>
@@ -18,5 +18,5 @@ export default () => (
         </ul>
       </nav>
     </div>
-  </div>
+  </aside>
 )

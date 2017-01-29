@@ -9,7 +9,7 @@ export default class extends Component {
   handleChange(text) {
     const { input } = this.props
     const val = {
-      ...input,
+      ...input.value,
       text
     }
 

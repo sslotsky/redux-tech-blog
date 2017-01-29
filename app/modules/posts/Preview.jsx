@@ -86,14 +86,14 @@ class Preview extends Component {
 
   render() {
     return (
-      <div className='row preview'>
-        <div className='col-1 cards'>
+      <main className='preview row'>
+        <aside className='soft-quarter'>
           <Cards {...this.props} />
-        </div>
-        <div className='col-1 blocks'>
+        </aside>
+        <article className='col-1 soft-quarter'>
           <Blocks {...this.props} />
-        </div>
-      </div>
+        </article>
+      </main>
     )
   }
 }

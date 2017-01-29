@@ -28,14 +28,11 @@ module.exports = {
       loader: 'json'
     }]
   },
-  devServer: {
-    historyApiFallback: true
-  },
   plugins: [
-    new BrowserSyncPlugin({
-      host: 'localhost',
-      port: 3000,
-      proxy: 'http://localhost:8080/'
-    }
- )]
+    new webpack.DefinePlugin({
+      'process.env': {
+        'API_BASE': JSON.stringify('/api')
+      }
+    })
+  ]
 }

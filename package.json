@@ -6,7 +6,7 @@
   "scripts": {
     "server": "npm run build-client && babel-node app/server.jsx --presets es2015,react,stage-2",
     "build-client": "webpack ./app/main.jsx",
-    "dev-client": "webpack-dev-server --progress --colors -w"
+    "dev-client": "webpack-dev-server --progress --colors -w --config ./webpack.config.live.js"
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +20,7 @@
     "browser-sync": "^2.18.5",
     "browser-sync-webpack-plugin": "^1.1.3",
     "css-loader": "^0.26.1",
+    "lodash": "^4.17.4",
     "node-sass": "^4.1.1",
     "sass-loader": "^4.1.1",
     "style-loader": "^0.13.1",

@@ -12,24 +12,6 @@ const components = {
 }
 
 class Form extends Component {
-  //blocks() {
-  //  const previewing = this.props.fields.preview.value
-  //  if (previewing)
-  //    return (
-  //      <Preview {...this.props} blocks={this.props.fields.blocks} />
-  //    )
-
-  //  return this.props.fields.blocks.map((b, i) => {
-  //    const Component = components[b.format.value]
-  //    return (
-  //      <div key={`blocks-${i}`}>
-  //        <Component {...b} />
-  //        <hr />
-  //      </div>
-  //    )
-  //  })
-  //}
-
   state = {
     preview: false
   }
@@ -65,7 +47,6 @@ class Form extends Component {
   render() {
     return (
       <form onSubmit={this.props.handleSubmit}>
-        {/*this.blocks()*/}
         <FieldArray
           name="blocks"
           component={Blocks}

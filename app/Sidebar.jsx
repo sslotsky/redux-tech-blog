@@ -13,7 +13,7 @@ export default () => (
             <Link className='pure-button' to='/posts/new'>New Post</Link>
           </li>
           <li className='nav-item'>
-            <Link className='pure-button' to='/'>Home</Link>
+            <Link className='pure-button' to='/login'>Login</Link>
           </li>
         </ul>
       </nav>

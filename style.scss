@@ -61,3 +61,14 @@ section.preview {
   color: white;
   text-align: center;
 }
+
+.login {
+  width: 50%;
+}
+
+.form-group p {
+  &.error {
+    color: red;
+    padding: .25rem;
+  }
+}

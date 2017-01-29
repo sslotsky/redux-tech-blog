@@ -48,8 +48,11 @@
     "react-router": "^2.3.0",
     "react-router-redux": "^4.0.7",
     "react-syntax-highlighter": "^2.0.2",
+    "react-violet-forms": "^0.2.0",
     "redux": "^3.4.0",
     "redux-form": "^6.5.0",
-    "url-loader": "^0.5.7"
+    "redux-thunk": "^2.2.0",
+    "url-loader": "^0.5.7",
+    "validate-this": "^1.2.2"
   }
 }

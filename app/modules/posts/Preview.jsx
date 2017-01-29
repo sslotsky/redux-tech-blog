@@ -90,7 +90,7 @@ class Preview extends Component {
         <div className='col-1 cards'>
           <Cards {...this.props} />
         </div>
-        <div className='col-4'>
+        <div className='col-1 blocks'>
           <Blocks {...this.props} />
         </div>
       </div>

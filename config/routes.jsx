@@ -7,9 +7,10 @@ import New from '../app/modules/posts/New'
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={Posts} />
+    {/*<IndexRoute component={Posts} />
     <Route path='profile' component={EditProfile} />
-    <Route path='posts/new' component={New} />
+    <Route path='posts/new' component={New} />*/}
+    <IndexRoute component={New} />
   </Route>
 )
 

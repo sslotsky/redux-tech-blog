@@ -53,24 +53,24 @@ class Form extends Component {
       return false
 
     return (
-      <div className='button-list pull-right'>
-        <a className='pure-button button-secondary' onClick={this.props.addSnippet}>Add Snippet</a>
-        <a className='pure-button button-secondary' onClick={this.props.addMarkdown}>Add Markdown</a>
+      <div>
+        <a onClick={this.props.addSnippet}>Add Snippet</a>
+        <a onClick={this.props.addMarkdown}>Add Markdown</a>
       </div>
     )
   }
 
   render() {
     return (
-      <form className='pure-form pure-form-stacked' onSubmit={this.props.handleSubmit}>
+      <form onSubmit={this.props.handleSubmit}>
         {this.blocks()}
         <div className='button-list pull-right'>
-          <button type='submit' className='pure-button button-success'>
+          <button type='submit'>
             Submit
           </button>
-          <a className='pure-button button-secondary' onClick={::this.togglePreview}>
+          <button onClick={::this.togglePreview}>
             {this.previewButtonText()}
-          </a>
+          </button>
         </div>
         {this.buttonList()}
       </form>

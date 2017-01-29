@@ -5,7 +5,8 @@
   "main": "./app/main.js",
   "scripts": {
     "server": "npm run build-client && babel-node app/server.jsx --presets es2015,react,stage-2",
-    "build-client": "webpack ./app/main.jsx"
+    "build-client": "webpack ./app/main.jsx",
+    "dev-client": "webpack-dev-server --progress --colors -w"
   },
   "author": "",
   "license": "ISC",

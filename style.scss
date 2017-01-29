@@ -13,9 +13,7 @@
 .card-container {
   background-color: rgb(176, 202, 219);
   margin: 0 .25rem .25rem 0;
-  padding: .25rem;
   border-radius: .25rem;
-  box-shadow: 0 0 15px rgba(0,0,0,0.1);
   .card {
     &.dragging {
       opacity: 0.5;
@@ -27,17 +25,16 @@
     }
 
     .CodeMirror {
-      border-radius: .25rem;
       height: 7rem;
     }
 
     .markdown-card {
-      border-radius: .25rem;
       padding: 1rem;
       background-color: white;
       height: 7rem;
       overflow: hidden;
       box-shadow: 0 0 .75rem rgba(0,0,0,0.1);
+      margin-bottom: 1rem;
     }
   }
 }

@@ -1,101 +1,62 @@
 import React, { PropTypes, Component } from 'react'
+import { Field } from 'redux-form'
 import { Snippet, Markdown } from './Show'
 import Cards from './Cards'
 
-class SnippetPreview extends Component {
-  static propTypes = {
-    language: PropTypes.object.isRequired,
-    text: PropTypes.object.isRequired
+function SnippetPreview({ language, text }) {
+  const options = {
+    readOnly: true
   }
 
-  options() {
-    return {
-      readOnly: true
-    }
-  }
-
-  render() {
-    return (
-      <Snippet
-        options={this.options()}
-        language={this.props.language.value}
-        text={this.props.text.value} />
-    )
-  }
-}
-
-class MarkdownPreview extends Component {
-  static propTypes = {
-    text: PropTypes.object.isRequired
-  }
-  
-  render() {
-    return (
-      <Markdown text={this.props.text.value} />
-    )
-  }
+  return (
+    <Snippet
+      options={options}
+      language={language}
+      text={text}
+    />
+  )
 }
 
 const components = {
   snippet: SnippetPreview,
-  markdown: MarkdownPreview
+  markdown: Markdown
 }
 
-class Block extends Component {
-  static propTypes = {
-    block: PropTypes.object.isRequired
-  }
+function Block({ input }) {
+  const Component = components[input.value.format]
 
-  render() {
-    const { block } = this.props
-    const Component = components[block.format.value]
-    return (
-      <Component {...block} />
-    )
-  }
+  return (
+    <Component {...input.value} />
+  )
 }
 
-class Blocks extends Component {
-  static propTypes = {
-    blocks: PropTypes.array.isRequired
-  }
-
-  blocks() {
-    return this.props.blocks.map((b, i) => {
-      return (
-        <div className='preview' key={`blocks-${i}`}>
-          <Block block={b} />
-        </div>
-      )
-    })
-  }
-
-  render() {
-    return (
-      <div>
-        {this.blocks()}
-      </div>
-    )
-  }
+function renderBlock(member, index, fields) {
+  return (
+    <Field
+      name={member}
+      component={Block}
+      key={index}
+    />
+  )
 }
 
-class Preview extends Component {
-  static propTypes = {
-    blocks: PropTypes.array.isRequired
-  }
-
-  render() {
-    return (
-      <section className='preview row'>
-        <aside className='soft-quarter'>
-          <Cards {...this.props} />
-        </aside>
-        <article className='col-1 soft-quarter'>
-          <Blocks {...this.props} />
-        </article>
-      </section>
-    )
-  }
+function Blocks({ fields }) {
+  return (
+    <div>
+      {fields.map(renderBlock)}
+    </div>
+  )
 }
 
-export default Preview
+export default function Preview(props) {
+  return (
+    <section className='preview row'>
+      <aside className='soft-quarter'>
+        <Cards {...props} />
+      </aside>
+      <article className='col-1 soft-quarter'>
+        <Blocks {...props} />
+      </article>
+    </section>
+  )
+}

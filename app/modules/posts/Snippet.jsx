@@ -3,34 +3,49 @@ import { Snippet } from './Show'
 
 export default class extends Component {
   static propTypes = {
-    language: PropTypes.object,
-    text: PropTypes.object
+    input: PropTypes.object
   }
 
   changeLanguage(e) {
-    this.props.language.onChange(e.target.value)
+    const { input } = this.props
+    const val = {
+      ...input,
+      language: e.target.value
+    }
+
+    input.onChange(val)
   }
 
   handleChange(text) {
-    this.props.text.onChange(text)
+    const { input } = this.props
+    const val = {
+      ...input,
+      text
+    }
+
+    input.onChange(val)
   }
 
   shouldComponentUpdate(nextProps) {
-    return this.props.text.value != nextProps.text.value || this.props.language.value != nextProps.language.value
+    const { text, language } = this.props.input.value
+    const { value } = nextProps.input
+
+    return text != value.text || language != value.language
   }
 
   render() {
-    const { language, text } = this.props
+    const { language, text } = this.props.input.value
+
     return (
       <div>
-        <select value={this.props.language.value} onChange={::this.changeLanguage}>
+        <select value={language} onChange={::this.changeLanguage}>
           <option value='jsx'>JSX</option>
           <option value='javascript'>JavaScript</option>
           <option value='ruby'>Ruby</option>
         </select>
         <Snippet
-          language={language.value}
-          text={text.value}
+          language={language}
+          text={text}
           onChange={::this.handleChange} />
       </div>
     )

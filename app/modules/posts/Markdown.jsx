@@ -3,24 +3,32 @@ import { Markdown } from './Show'
 
 export default class extends Component {
   static propTypes = {
-    text: PropTypes.object
+    input: PropTypes.object
   }
 
   handleChange(text) {
-    this.props.text.onChange(text)
+    const { input } = this.props
+    const val = {
+      ...input,
+      text
+    }
+
+    input.onChange(val)
   }
 
   shouldComponentUpdate(nextProps) {
-    return this.props.text.value != nextProps.text.value
+    const { text } = this.props.input.value
+    const { value } = nextProps.input
+
+    return text != value.text
   }
 
   render() {
-    const { text } = this.props
+    const { text } = this.props.input.value
+
     return (
-      <Markdown text={text.value} onChange={::this.handleChange} />
+      <Markdown text={text} onChange={::this.handleChange} />
     )
   }
 }
-
-
 

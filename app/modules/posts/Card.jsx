@@ -1,4 +1,6 @@
 import React, { PropTypes, Component } from 'react'
+import { connect } from 'react-redux'
+import { arraySwap } from 'redux-form'
 import { Snippet, Markdown } from './Show'
 import { DragSource, DropTarget } from 'react-dnd'
 import { getEmptyImage } from 'react-dnd-html5-backend'
@@ -15,8 +17,8 @@ function SnippetCard({ language, text }) {
   return(
     <Snippet
       options={options}
-      language={language.value}
-      text={text.value}
+      language={language}
+      text={text}
     />
   )
 }
@@ -25,7 +27,7 @@ function MarkdownCard({ text }) {
   return (
     <div className='markdown-card'>
       <div className='card-content'>
-        <Markdown text={text.value} />
+        <Markdown text={text} />
       </div>
     </div>
   )
@@ -41,7 +43,7 @@ class Card extends Component {
     connectDragSource: PropTypes.func.isRequired,
     connectDropTarget: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
-    block: PropTypes.object.isRequired,
+    input: PropTypes.object.isRequired,
     swap: PropTypes.func.isRequired
   }
 
@@ -53,8 +55,8 @@ class Card extends Component {
   }
 
   render() {
-    const { isDragging, block, connectDragSource, connectDropTarget } = this.props
-    const Component = components[block.format.value]
+    const { isDragging, input, connectDragSource, connectDropTarget } = this.props
+    const Component = components[input.value.format]
     const classes = classnames('card', {
       dragging: isDragging
     })
@@ -64,15 +66,20 @@ class Card extends Component {
         <div className='card-header'>
           <div>
             <label>
-              {block.format.value}
+              {input.value.format}
             </label>
           </div>
-          <Component {...block} />
+          <Component {...input.value} />
         </div>
       </div>
     )))
   }
 }
 
+const actions = {
+  swap: (i, j) => arraySwap('post', 'blocks', i, j)
+}
+
 const Source = DragSource('card', cardSource, collectSource)(Card)
-export default DropTarget('card', cardTarget, collectTarget)(Source)
+const Target = DropTarget('card', cardTarget, collectTarget)(Source)
+export default connect(undefined, actions)(Target)

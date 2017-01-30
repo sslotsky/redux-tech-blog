@@ -28,10 +28,13 @@
     "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
+    "axios": "^0.15.3",
+    "babel-plugin-module-resolver": "^2.4.0",
     "bcrypt": "^1.0.2",
     "body-parser": "^1.16.0",
     "classnames": "^2.2.5",
     "cookie-parser": "^1.4.3",
+    "cors": "^2.8.1",
     "express": "^4.14.0",
     "file-loader": "^0.8.5",
     "json-loader": "^0.5.4",

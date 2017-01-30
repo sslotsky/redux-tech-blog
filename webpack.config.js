@@ -30,9 +30,7 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': {
-        'API_BASE': JSON.stringify('/api')
-      }
+      API_BASE: JSON.stringify('/api')
     })
   ]
 }

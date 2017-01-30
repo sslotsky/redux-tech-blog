@@ -4,6 +4,8 @@ import { FormInput, Save } from 'react-violet-forms'
 import { connect } from 'react-redux'
 import { validator } from 'validate-this'
 
+import { authenticate } from '../../actions'
+
 export function Login(props) {
   return (
     <div className="login soft-half outset">
@@ -16,7 +18,7 @@ export function Login(props) {
   )
 }
 
-const actions = { onSubmit: data => () => Promise.resolve(console.log(data)) }
+const actions = { onSubmit: authenticate }
 
 const required = val => (!val && 'Required') || undefined
 

@@ -14,9 +14,7 @@ module.exports = _.extend(base, {
       proxy: 'http://localhost:8080/'
     }),
     new webpack.DefinePlugin({
-      'process.env': {
-        'API_BASE': JSON.stringify('http://localhost:9999/api')
-      }
+      API_BASE: JSON.stringify('http://localhost:9999/api')
     })
   ]
 }) 

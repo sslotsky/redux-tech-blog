@@ -35,6 +35,7 @@
     "classnames": "^2.2.5",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.1",
+    "csrf": "^3.0.4",
     "express": "^4.14.0",
     "file-loader": "^0.8.5",
     "json-loader": "^0.5.4",

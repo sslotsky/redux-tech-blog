@@ -1,13 +1,25 @@
 import express from 'express'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
+import cors from 'cors'
+import Tokens from 'csrf'
 
 import pg from './connection'
 
 // TODO: move secret into a config
 const SECRET = 'yaybourbon'
+const tokens = new Tokens()
+const csrfSecret = tokens.secretSync()
 
 const apiRoutes = express.Router();
+
+apiRoutes.use(cors({ origin: 'http://localhost:3000', credentials: true }))
+
+apiRoutes.use((req, res, next) => {
+  const token = tokens.create(csrfSecret)
+  res.cookie('XSRF-TOKEN', token)
+  next()
+})
 
 apiRoutes.post('/authenticate', (req, res) => {
   const { username, password } = req.body
@@ -39,6 +51,13 @@ apiRoutes.use((req, res, next) => {
     })
   } else {
     return res.status(403).json({ message: 'No token provided' })
+  }
+})
+
+apiRoutes.use((req, res, next) => {
+  const token = req.headers['X-XSRF-TOKEN']
+  if (!tokens.verify(csrfSecret, token)) {
+    return res.status(403).json({ message: 'Invalid CSRF token' })
   }
 })
 

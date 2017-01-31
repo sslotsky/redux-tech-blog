@@ -61,6 +61,7 @@ This is some **bold** and _italic_ text fodoisjoidjfoijdoijdfoijoeijofdijfoeijfo
 `
 
 export default {
+  title: 'My First Post',
   blocks: [{
     format: 'snippet',
     language: 'jsx',

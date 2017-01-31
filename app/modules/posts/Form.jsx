@@ -1,15 +1,8 @@
 import React, { PropTypes, Component } from 'react'
 import { connect } from 'react-redux'
-import { reduxForm, arrayPush, arraySwap, FieldArray } from 'redux-form'
-import Snippet from './Snippet'
-import Markdown from './Markdown'
-import Preview from './Preview'
-import Blocks from './Blocks'
-
-const components = {
-  snippet: Snippet,
-  markdown: Markdown
-}
+import { reduxForm, arrayPush, arraySwap } from 'redux-form'
+import Editor from './components/Editor/Editor'
+import Preview from './components/Preview/Preview'
 
 class Form extends Component {
   state = {
@@ -25,42 +18,12 @@ class Form extends Component {
     return this.state.preview
   }
 
-  previewButtonText() {
-    if (this.previewing())
-      return 'Edit'
-
-    return 'Preview'
-  }
-
-  buttonList() {
-    if (this.previewing())
-      return false
-
-    return (
-      <div>
-        <a onClick={this.props.addSnippet}>Add Snippet</a>
-        <a onClick={this.props.addMarkdown}>Add Markdown</a>
-      </div>
-    )
-  }
-
   render() {
+    const Toggled = this.previewing() ? Preview : Editor
+
     return (
       <form onSubmit={this.props.handleSubmit}>
-        <FieldArray
-          name="blocks"
-          component={Blocks}
-          previewing={this.state.preview}
-        />
-        <div className='button-list pull-right'>
-          <button type='submit'>
-            Submit
-          </button>
-          <button onClick={::this.togglePreview}>
-            {this.previewButtonText()}
-          </button>
-        </div>
-        {this.buttonList()}
+        <Toggled toggle={() => this.togglePreview()} {...this.props} />
       </form>
     )
   }

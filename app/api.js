@@ -29,5 +29,8 @@ export default {
       window.localStorage.removeItem('user')
       return resp
     })
+  },
+  posts: {
+    create: data => adapter.post('/posts', data)
   }
 }

@@ -61,7 +61,7 @@ This is some **bold** and _italic_ text fodoisjoidjfoijdoijdfoijoeijofdijfoeijfo
 `
 
 export default {
-    blocks: [{
+  blocks: [{
     format: 'snippet',
     language: 'jsx',
     text: snippet1

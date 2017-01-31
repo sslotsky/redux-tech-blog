@@ -2,18 +2,14 @@ import React, { PropTypes, Component } from 'react'
 import { connect } from 'react-redux'
 import Form from './Form'
 import seedData from './seed'
+import * as actions from './actions'
 
-function New({ profile }) {
-  const handleSubmit = formData  => {
-    console.log(formData)
-    return Promise.resolve(formData)
-  }
-
+function New({ profile, submit }) {
   const initialValues = { ...seedData, preview: true }
 
   return (
     <Form
-      onSubmit={handleSubmit}
+      onSubmit={submit}
       initialValues={initialValues}
     />
   )
@@ -25,4 +21,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(New)
+export default connect(mapStateToProps, actions)(New)

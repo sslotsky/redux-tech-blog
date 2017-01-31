@@ -22,7 +22,7 @@ export default {
   session: {
     authenticate: ({ username, password }) =>
       adapter.post('/authenticate', { username, password }).then(resp => {
-        window.localStorage.setItem('user', JSON.stringify(resp.data))
+        window.localStorage.setItem('user', JSON.stringify(resp.data.user))
         return resp
       }),
     logout: () => adapter.get('/logout').then(resp => {

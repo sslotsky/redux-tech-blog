@@ -15,7 +15,7 @@ export function logout() {
 
 export function authenticate(data) {
   return dispatch => api.session.authenticate(data).then(resp => {
-    dispatch(authenticated(resp.data))
+    dispatch(authenticated(resp.data.user))
     dispatch(push('/'))
   }).catch(err => {
     throw new SubmissionError(err.response.data.errors)

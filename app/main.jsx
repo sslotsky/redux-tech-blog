@@ -9,7 +9,8 @@ import { compose, createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import { AppContainer as App } from './App'
 import DevTools from './DevTools'
-import { authenticated } from './modules/session/actions'
+import { authenticated, logout } from './modules/session/actions'
+import PubSub from 'pubsub-js'
 
 const router = routerMiddleware(browserHistory)
 const store = createStore(
@@ -21,6 +22,8 @@ const serializedUser = window.localStorage.getItem('user')
 if (serializedUser) {
   store.dispatch(authenticated(JSON.parse(serializedUser)))
 }
+
+PubSub.subscribe('session.expired', () => store.dispatch(logout()))
 
 const history = syncHistoryWithStore(browserHistory, store)
 

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import PubSub from 'pubsub-js'
 
 export const adapter = axios.create({
   baseURL: API_BASE,
@@ -7,6 +8,14 @@ export const adapter = axios.create({
   headers: {
     Accept: 'application/json'
   }
+})
+
+adapter.interceptors.response.use(undefined, error => {
+  if (error.response.status === 403) {
+    PubSub.publish('session.expired')
+  }
+
+  return Promise.reject(error)
 })
 
 export default {

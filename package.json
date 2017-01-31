@@ -43,6 +43,7 @@
     "knex": "^0.12.6",
     "morgan": "^1.7.0",
     "pg": "^6.1.2",
+    "pubsub-js": "^1.5.4",
     "react": "^15.0.1",
     "react-codemirror": "^0.3.0",
     "react-dnd": "^2.1.4",

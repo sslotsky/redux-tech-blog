@@ -8,19 +8,29 @@ import reducer from './reducer'
 import { compose, createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import { AppContainer as App } from './App'
+import DevTools from './DevTools'
+import { authenticated } from './modules/session/actions'
 
 const router = routerMiddleware(browserHistory)
-const createStoreWithMiddleware = applyMiddleware(router, thunk)(createStore)
-const store = createStoreWithMiddleware(reducer)
+const store = createStore(
+  reducer,
+  compose(applyMiddleware(router, thunk), DevTools.instrument())
+)
+
+const serializedUser = window.localStorage.getItem('user')
+if (serializedUser) {
+  store.dispatch(authenticated(JSON.parse(serializedUser)))
+}
 
 const history = syncHistoryWithStore(browserHistory, store)
 
 ReactDOM.render((
-  <div>
-    <Provider store={store}>
+  <Provider store={store}>
+    <div>
+      <DevTools />
       <Router history={history}>
         {routes}
       </Router>
-    </Provider>
-  </div>
+    </div>
+  </Provider>
 ), document.getElementById("app"))

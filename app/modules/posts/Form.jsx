@@ -13,7 +13,7 @@ const components = {
 
 class Form extends Component {
   state = {
-    preview: false
+    preview: true
   }
 
   togglePreview() {

@@ -2,6 +2,22 @@
 @import './node_modules/codemirror/theme/erlang-dark.css';
 @import './node_modules/codemirror/lib/codemirror.css';
 
+header {
+  font-size: 2rem;
+  height: 10rem;
+  background: linear-gradient(145deg, #7e69c6, white);
+  text-align: center;
+  padding: 1rem;
+
+  h1 {
+    margin: 0.25rem;
+  }
+}
+
+nav a {
+  margin: .5rem;
+}
+
 .cards {
   margin-right: 5px;
 }
@@ -20,7 +36,7 @@
     }
 
     .card-header label {
-      padding-left: 0.25rem;
+      padding-left: .5rem;
       padding-bottom: 0;
     }
 

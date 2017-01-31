@@ -10,11 +10,15 @@ export const adapter = axios.create({
 })
 
 export default {
-  users: {
+  session: {
     authenticate: ({ username, password }) =>
       adapter.post('/authenticate', { username, password }).then(resp => {
         window.localStorage.setItem('user', JSON.stringify(resp.data))
         return resp
-      })
+      }),
+    logout: () => adapter.get('/logout').then(resp => {
+      window.localStorage.removeItem('user')
+      return resp
+    })
   }
 }

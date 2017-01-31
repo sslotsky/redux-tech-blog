@@ -8,11 +8,13 @@ export function authenticated(user) {
 }
 
 export function logout() {
-  return { type: actionTypes.LOGOUT }
+  return dispatch => api.session.logout().then(() =>
+    dispatch({ type: actionTypes.LOGOUT })
+  )
 }
 
 export function authenticate(data) {
-  return dispatch => api.users.authenticate(data).then(resp => {
+  return dispatch => api.session.authenticate(data).then(resp => {
     dispatch(authenticated(resp.data))
     dispatch(push('/'))
   }).catch(err => {

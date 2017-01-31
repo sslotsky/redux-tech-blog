@@ -55,10 +55,17 @@ apiRoutes.use((req, res, next) => {
 })
 
 apiRoutes.use((req, res, next) => {
-  const token = req.headers['X-XSRF-TOKEN']
+  const token = req.headers['x-xsrf-token']
   if (!tokens.verify(csrfSecret, token)) {
     return res.status(403).json({ message: 'Invalid CSRF token' })
   }
+
+  next()
+})
+
+apiRoutes.get('/logout', (req, res) => {
+  res.clearCookie('auth-token')
+  return res.status(200).json({ message: 'Logout successful' })
 })
 
 export default apiRoutes

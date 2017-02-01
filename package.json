@@ -30,7 +30,7 @@
   "dependencies": {
     "axios": "^0.15.3",
     "babel-plugin-module-resolver": "^2.4.0",
-    "bcrypt": "^1.0.2",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.16.0",
     "classnames": "^2.2.5",
     "cookie-parser": "^1.4.3",

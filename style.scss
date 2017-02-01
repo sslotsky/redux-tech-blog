@@ -56,7 +56,7 @@ nav a {
 }
 
 main aside.sidebar {
-  max-width: 25%;
+  min-width: 15%;
 }
 
 section.preview {
@@ -65,7 +65,7 @@ section.preview {
   }
 
   article {
-    max-width: 25%;
+    max-width: 35%;
   }
 
   .CodeMirror {

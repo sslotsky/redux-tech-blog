@@ -26,7 +26,8 @@ export class Snippet extends Component {
       <CodeMirror
         {...this.props}
         options={this.options()}
-        value={this.props.text} />
+        value={this.props.text}
+      />
     )
   }
 }

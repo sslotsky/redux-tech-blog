@@ -2,7 +2,7 @@ import React, {PropTypes, Component} from 'react'
 import { Link } from 'react-router'
 
 export default () => (
-  <aside className="soft-quarter">
+  <aside className="sidebar soft-quarter col-1">
     <div className='header'>
       <h1 className='brand-title'>Redux Blog</h1>
       <h2 className='brand-tagline'>Building apps with Redux</h2>

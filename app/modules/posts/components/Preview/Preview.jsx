@@ -4,9 +4,17 @@ import { Save } from 'react-violet-forms'
 
 import BlockPreview from '../../Preview'
 
+const Title = ({ input }) => (
+  <h1 className="post-title">{input.value}</h1>
+)
+
 export default function Preview({ toggle, ...rest }) {
   return (
     <div>
+      <Field
+        name="title"
+        component={Title}
+      />
       <FieldArray
         name="blocks"
         component={BlockPreview}

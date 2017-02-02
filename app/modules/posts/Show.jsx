@@ -9,8 +9,12 @@ import 'codemirror/mode/markdown/markdown'
 export class Snippet extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
+    text: PropTypes.string,
     options: PropTypes.object
+  }
+
+  static defaultProps = {
+    text: ''
   }
 
   options() {
@@ -34,8 +38,12 @@ export class Snippet extends Component {
 
 export class Markdown extends Component {
   static propTypes = {
-    text: PropTypes.string.isRequired,
+    text: PropTypes.string,
     onChange: PropTypes.func
+  }
+
+  static defaultProps = {
+    text: ''
   }
 
   render() {

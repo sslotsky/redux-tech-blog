@@ -21,7 +21,7 @@ function renderCard(member, index, fields) {
 class CardList extends Component {
   render() {
     return (
-      <div className='pure-g cards'>
+      <div className='cards'>
         {this.props.fields.map(renderCard)}
         <CardDragLayer />
       </div>

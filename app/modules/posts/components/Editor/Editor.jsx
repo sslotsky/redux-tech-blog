@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { Field, FieldArray } from 'redux-form'
-import { Save } from 'react-violet-forms'
+import { FormInput, Save } from 'react-violet-forms'
 
 import Snippet from '../..//Snippet'
 import Markdown from '../..//Markdown'
@@ -30,16 +30,27 @@ export function renderBlocks({ fields }) {
   )
 }
 
-export default function Editor({ toggle, ...rest }) {
+export default function Editor({ toggle, addMarkdown, addSnippet, ...rest }) {
   return (
-    <div>
+    <div className="soft-quarter inset">
+      <Field
+        name="title"
+        component={FormInput}
+        label="Title"
+      />
       <FieldArray
         name="blocks"
         component={renderBlocks}
       />
-      <div className='button-list pull-right'>
+      <div className='button-list'>
+        <button type="button" onClick={addSnippet}>
+          Add Snippet
+        </button>
+        <button type="button" onClick={addMarkdown}>
+          Add Markdown
+        </button>
         <Save {...rest} />
-        <button onClick={toggle}>
+        <button type="button" onClick={toggle}>
           Preview
         </button>
       </div>

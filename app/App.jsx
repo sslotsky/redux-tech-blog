@@ -14,10 +14,12 @@ export default ({ children }) => (
       <ToggleSession />
       <Link to='/'>New Post</Link>
     </nav>
-    <main className="row">
+    <div className="pure-g">
       <Sidebar />
-      {children}
-    </main>
+      <div className="pure-u-7-8">
+        {children}
+      </div>
+    </div>
   </div>
 )
 

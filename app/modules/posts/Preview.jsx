@@ -50,11 +50,11 @@ function Blocks({ fields }) {
 
 export default function Preview(props) {
   return (
-    <section className='preview row'>
-      <aside className='soft-quarter'>
+    <section className='preview pure-g'>
+      <div className='soft-quarter pure-u-1-4'>
         <Cards {...props} />
-      </aside>
-      <article className='col-1 soft-quarter'>
+      </div>
+      <article className='pure-u-3-4 soft-quarter'>
         <Blocks {...props} />
       </article>
     </section>

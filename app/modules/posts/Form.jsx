@@ -14,12 +14,9 @@ class Form extends Component {
     this.setState({ preview: !preview })
   }
 
-  previewing() {
-    return this.state.preview
-  }
-
   render() {
-    const Toggled = this.previewing() ? Preview : Editor
+    const { preview } = this.state
+    const Toggled = preview ? Preview : Editor
 
     return (
       <form onSubmit={this.props.handleSubmit}>

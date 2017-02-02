@@ -55,19 +55,7 @@ nav a {
   }
 }
 
-main aside.sidebar {
-  min-width: 15%;
-}
-
 section.preview {
-  aside {
-    max-width: 10%;
-  }
-
-  article {
-    max-width: 35%;
-  }
-
   .CodeMirror {
     margin-bottom: 1rem;
   }
@@ -91,4 +79,8 @@ section.preview {
     color: red;
     padding: .25rem;
   }
+}
+
+.post-title {
+  text-align: center;
 }

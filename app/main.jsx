@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Router, browserHistory } from 'react-router'
-import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux'
+import { syncHistoryWithStore, routerMiddleware, push } from 'react-router-redux'
 import thunk from 'redux-thunk'
 import routes from '../config/routes'
 import reducer from './reducer'
@@ -23,7 +23,9 @@ if (serializedUser) {
   store.dispatch(authenticated(JSON.parse(serializedUser)))
 }
 
-PubSub.subscribe('session.expired', () => store.dispatch(logout()))
+PubSub.subscribe('session.expired', () => {
+  store.dispatch(logout()).then(() => store.dispatch(push('/login')))
+})
 
 const history = syncHistoryWithStore(browserHistory, store)
 

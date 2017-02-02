@@ -10,10 +10,11 @@ function getUser(username) {
 const apiRoutes = secureRoutes(express.Router(), { getUser })
 
 apiRoutes.post('/posts', (req, res) => {
-  const { blocks } = req.body
+  const { blocks, title } = req.body
   const post = {
     author_id: req.decoded.id,
-    blocks: JSON.stringify(blocks)
+    blocks: JSON.stringify(blocks),
+    title
   }
 
   pg('posts').insert(post).returning('*').then(resp => res.json({ post: resp[0] }))

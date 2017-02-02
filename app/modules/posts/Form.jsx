@@ -6,7 +6,7 @@ import Preview from './components/Preview/Preview'
 
 class Form extends Component {
   state = {
-    preview: true
+    preview: false
   }
 
   togglePreview() {
@@ -28,7 +28,8 @@ class Form extends Component {
 
 const actions = {
   addSnippet: () => arrayPush('post', 'blocks', { format: 'snippet', language: 'jsx' }),
-  addMarkdown: () => arrayPush('post', 'blocks', { format: 'markdown' })
+  addMarkdown: () => arrayPush('post', 'blocks', { format: 'markdown' }),
+  addVideo: () => arrayPush('post', 'blocks', { format: 'video' })
 } 
 
 export default reduxForm({

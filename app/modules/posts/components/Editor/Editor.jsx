@@ -2,12 +2,14 @@ import React, { PropTypes } from 'react'
 import { Field, FieldArray } from 'redux-form'
 import { FormInput, Save } from 'react-violet-forms'
 
-import Snippet from '../..//Snippet'
-import Markdown from '../..//Markdown'
+import Snippet from 'POSTS/Snippet'
+import Markdown from 'POSTS/Markdown'
+import { Video } from './blockTypes'
 
 const components = {
   snippet: Snippet,
-  markdown: Markdown
+  markdown: Markdown,
+  video: Video
 }
 
 export function renderBlock(member, index, fields) {
@@ -30,9 +32,9 @@ export function renderBlocks({ fields }) {
   )
 }
 
-export default function Editor({ toggle, addMarkdown, addSnippet, ...rest }) {
+export default function Editor({ toggle, addMarkdown, addSnippet, addVideo, ...rest }) {
   return (
-    <div className="soft-quarter inset">
+    <div className="soft-half inset">
       <Field
         name="title"
         component={FormInput}
@@ -48,6 +50,9 @@ export default function Editor({ toggle, addMarkdown, addSnippet, ...rest }) {
         </button>
         <button type="button" onClick={addMarkdown}>
           Add Markdown
+        </button>
+        <button type="button" onClick={addVideo}>
+          Add Video
         </button>
         <Save {...rest} />
         <button type="button" onClick={toggle}>

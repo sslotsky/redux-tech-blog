@@ -52,11 +52,21 @@ nav a {
       box-shadow: 0 0 .75rem rgba(0,0,0,0.1);
       margin-bottom: 1rem;
     }
+
+    .video-card {
+      height: 7rem;
+      overflow: hidden;
+    }
   }
 }
 
 section.preview {
   .CodeMirror {
+    margin-bottom: 1rem;
+  }
+
+  .video {
+    height: 20rem;
     margin-bottom: 1rem;
   }
 }

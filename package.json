@@ -6,7 +6,7 @@
   "scripts": {
     "server": "npm run build-client && babel-node app/server.jsx --presets es2015,react,stage-2",
     "build-client": "webpack ./app/main.jsx",
-    "dev-client": "webpack-dev-server --progress --colors -w --config ./webpack.config.live.js"
+    "dev-client": "webpack-dev-server --progress --colors -w --hot --config ./webpack.config.live.js"
   },
   "author": "",
   "license": "ISC",
@@ -49,6 +49,7 @@
     "react-dnd": "^2.1.4",
     "react-dnd-html5-backend": "^2.1.2",
     "react-dom": "^15.0.1",
+    "react-hot-loader": "^3.0.0-beta.6",
     "react-markdown": "^2.2.0",
     "react-redux": "^4.4.5",
     "react-router": "^2.3.0",

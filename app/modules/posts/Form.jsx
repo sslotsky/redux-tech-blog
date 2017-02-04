@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { reduxForm, arrayPush, arraySwap } from 'redux-form'
 import Editor from './components/Editor/Editor'
 import Preview from './components/Preview/Preview'
+import { search, create } from '../tags/actions'
 
 class Form extends Component {
   state = {
@@ -29,7 +30,9 @@ class Form extends Component {
 const actions = {
   addSnippet: () => arrayPush('post', 'blocks', { format: 'snippet', language: 'jsx' }),
   addMarkdown: () => arrayPush('post', 'blocks', { format: 'markdown' }),
-  addVideo: () => arrayPush('post', 'blocks', { format: 'video' })
+  addVideo: () => arrayPush('post', 'blocks', { format: 'video' }),
+  searchTags: search,
+  createTag: create
 } 
 
 export default reduxForm({

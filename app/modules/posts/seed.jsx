@@ -62,6 +62,7 @@ This is some **bold** and _italic_ text fodoisjoidjfoijdoijdfoijoeijofdijfoeijfo
 
 export default {
   title: 'My First Post',
+  tag_ids: [],
   blocks: [{
     format: 'video',
     url: 'https://www.youtube.com/watch?v=Im4zK7CR7mE'

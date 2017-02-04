@@ -55,6 +55,7 @@
     "react-router": "^2.3.0",
     "react-router-redux": "^4.0.7",
     "react-syntax-highlighter": "^2.0.2",
+    "react-tag-box": "^1.2.0",
     "react-violet-forms": "^0.2.0",
     "redux": "^3.4.0",
     "redux-devtools": "^3.3.2",

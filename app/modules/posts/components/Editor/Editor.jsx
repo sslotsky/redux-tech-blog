@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import { Field, FieldArray } from 'redux-form'
 import { FormInput, Save } from 'react-violet-forms'
+import Tags from './Tags'
 
 import Snippet from 'POSTS/Snippet'
 import Markdown from 'POSTS/Markdown'
@@ -32,7 +33,23 @@ export function renderBlocks({ fields }) {
   )
 }
 
-export default function Editor({ toggle, addMarkdown, addSnippet, addVideo, ...rest }) {
+export default function Editor({
+  toggle,
+  addMarkdown,
+  addSnippet,
+  addVideo,
+  searchTags,
+  createTag,
+  ...rest
+}) {
+  const create = name => createTag(name).then(tag => ({
+    label: tag.name, value: tag.id
+  }))
+
+  const search = name => searchTags(name).then(tags =>
+    tags.map(t => ({ label: t.name, value: t.id }))
+  )
+
   return (
     <div className="soft-half inset">
       <Field
@@ -43,6 +60,12 @@ export default function Editor({ toggle, addMarkdown, addSnippet, addVideo, ...r
       <FieldArray
         name="blocks"
         component={renderBlocks}
+      />
+      <Field
+        name="tag_ids"
+        component={Tags}
+        search={search}
+        create={create}
       />
       <div className='button-list'>
         <button type="button" onClick={addSnippet}>

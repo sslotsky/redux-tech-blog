@@ -32,5 +32,9 @@ export default {
   },
   posts: {
     create: data => adapter.post('/posts', data)
+  },
+  tags: {
+    search: name => adapter.get('/tags', { params: { name } }),
+    create: name => adapter.post('/tags', { name })
   }
 }

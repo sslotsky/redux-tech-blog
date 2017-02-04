@@ -7,7 +7,7 @@ export default function postsController(routes) {
       ...req.body
     }
 
-    posts.create(post).then(post => res.json({ post }))
+    posts.create(post).then(p => res.json({ post: p }))
   })
 
   return routes

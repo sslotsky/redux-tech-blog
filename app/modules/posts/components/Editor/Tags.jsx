@@ -7,20 +7,25 @@ export default class Tags extends Component {
   }
 
   render() {
-    const { search } = this.props
+    const { search, input: tagIds } = this.props
     const { selected } = this.state
 
     const select = tag => {
       if (tag.value) {
         this.setState({ selected: selected.concat(tag) })
+        tagIds.onChange(tagIds.value.concat(tag.value))
       } else {
         this.props.create(tag.label).then(t => {
           this.setState({ selected: selected.concat(t) })
+          tagIds.onChange(tagIds.value.concat(t.value))
         })
       }
     }
 
-    const remove = tag => this.setState({ selected: selected.filter(t => t !== tag) })
+    const remove = tag => {
+      this.setState({ selected: selected.filter(t => t !== tag) })
+      tagIds.onChange(tagIds.value.filter(id => id !== tag.value))
+    }
 
     return (
       <div className="tags">

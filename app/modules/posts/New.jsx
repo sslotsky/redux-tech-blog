@@ -5,7 +5,7 @@ import seedData from './seed'
 import * as actions from './actions'
 
 function New({ profile, submit }) {
-  const initialValues = { ...seedData, preview: true }
+  const initialValues = seedData
 
   return (
     <Form

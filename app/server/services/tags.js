@@ -1,10 +1,10 @@
-import pg from '../connection'
+import Tag from '../models/Tag'
 
 export function search(name) {
-  return pg('tags').where('name', 'ilike', `%${name}%`).then(tags => tags)
+  return Tag.where('name', 'ilike', `%${name}%`).fetchAll()
 }
 
 export function create(name) {
-  return pg('tags').insert({ name }).returning('*').then(resp => resp[0])
+  return Tag.forge({ name }).save()
 }
 

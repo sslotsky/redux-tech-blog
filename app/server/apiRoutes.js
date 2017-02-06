@@ -1,12 +1,10 @@
 import express from 'express'
 
 import { secureRoutes } from './authenticator'
-import pg from './connection'
+import * as users from './services/users'
 import { posts, tags, registerRoutes } from './controllers'
 
-function getUser(username) {
-  return pg('users').first().where({ username })
-}
+const getUser = users.lookup
 
 const apiRoutes = secureRoutes(express.Router(), { getUser })
 registerRoutes(apiRoutes, posts, tags)

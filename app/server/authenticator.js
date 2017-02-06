@@ -1,21 +1,11 @@
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt-nodejs'
 import cors from 'cors'
-import Tokens from 'csrf'
 
 const SECRET = 'yaybourbon'
-const tokens = new Tokens()
 
 export function secureRoutes(routes, options) {
-  const csrfSecret = tokens.secretSync()
-
   routes.use(cors({ origin: 'http://localhost:3000', credentials: true }))
-
-  routes.use((req, res, next) => {
-    const token = tokens.create(csrfSecret)
-    res.cookie('XSRF-TOKEN', token)
-    next()
-  })
 
   routes.post('/authenticate', (req, res) => {
     const { username, password } = req.body
@@ -47,15 +37,6 @@ export function secureRoutes(routes, options) {
     } else {
       return res.status(403).json({ message: 'No token provided' })
     }
-  })
-
-  routes.use((req, res, next) => {
-    const token = req.headers['x-xsrf-token']
-    if (!tokens.verify(csrfSecret, token)) {
-      return res.status(403).json({ message: 'Invalid CSRF token' })
-    }
-
-    next()
   })
 
   routes.get('/logout', (req, res) => {

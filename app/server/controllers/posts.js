@@ -10,5 +10,9 @@ export default function postsController(routes) {
     posts.create(post).then(p => res.json({ post: p }))
   })
 
+  routes.get('/posts', (req, res) => {
+    posts.list().then(payload => res.json(payload))
+  })
+
   return routes
 }

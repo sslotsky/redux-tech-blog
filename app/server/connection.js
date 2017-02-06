@@ -1,5 +1,10 @@
 import knex from 'knex'
 import config from '../../knexfile'
+import initialize from 'bookshelf'
 
-export default knex(config)
+const pg = knex(config)
+export default pg
+
+export const bookshelf = initialize(pg)
+bookshelf.plugin('pagination')
 

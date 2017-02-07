@@ -1,4 +1,4 @@
-import api from 'ROOT/api'
+import api from 'CLIENT/api'
 import { SubmissionError } from 'redux-form'
 import { push } from 'react-router-redux'
 import * as actionTypes from './actionTypes'

@@ -1,4 +1,4 @@
-import api from '../../api'
+import api from 'CLIENT/api'
 
 export function search(name) {
   return dispatch => api.tags.search(name).then(resp => resp.data.tags)

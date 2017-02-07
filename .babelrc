@@ -4,8 +4,13 @@
     ["module-resolver", {
       "root": ["./"],
       "alias": {
-        "ROOT": "./app",
-        "POSTS": "./app/modules/posts"
+        "MODULES": "./app/client/modules",
+        "SERVER": "./app/server/",
+        "MODELS": "./app/server/models/",
+        "SERVICES": "./app/server/services/",
+
+        "CLIENT": "./app/client/",
+        "POSTS": "./app/client/modules/posts"
       }
     }]
   ]

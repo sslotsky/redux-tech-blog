@@ -1,4 +1,4 @@
-import * as posts from '../services/posts'
+import * as posts from 'SERVICES/posts'
 
 export default function postsController(routes) {
   routes.post('/posts', (req, res) => {

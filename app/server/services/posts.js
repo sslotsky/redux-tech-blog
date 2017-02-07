@@ -1,4 +1,4 @@
-import Post from '../models/Post'
+import Post from 'MODELS/Post'
 
 export function create({ blocks, tag_ids: tagIds, ...rest }) {
   const attributes = {

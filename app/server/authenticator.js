@@ -23,6 +23,11 @@ export function secureRoutes(routes, options) {
     })
   })
 
+  routes.get('/logout', (req, res) => {
+    res.clearCookie('auth-token')
+    return res.status(200).json({ message: 'Logout successful' })
+  })
+
   routes.use((req, res, next) => {
     const token = req.body['auth-token'] || req.cookies['auth-token']
     if (token) {
@@ -37,11 +42,6 @@ export function secureRoutes(routes, options) {
     } else {
       return res.status(403).json({ message: 'No token provided' })
     }
-  })
-
-  routes.get('/logout', (req, res) => {
-    res.clearCookie('auth-token')
-    return res.status(200).json({ message: 'Logout successful' })
   })
 
   return routes

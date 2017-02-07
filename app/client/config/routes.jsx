@@ -1,10 +1,10 @@
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
-import App from '../app/App'
-import { Index as Posts } from '../app/modules/posts/Index'
-import EditProfile from '../app/modules/profile/Edit'
-import New from '../app/modules/posts/New'
-import Login from '../app/modules/session/components/Login/Login'
+import App from 'CLIENT/App'
+import { Index as Posts } from 'MODULES/posts/Index'
+import EditProfile from 'MODULES/profile/Edit'
+import New from 'MODULES/posts/New'
+import Login from 'MODULES/session/components/Login/Login'
 
 export default (
   <Route path="/" component={App}>

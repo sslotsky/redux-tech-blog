@@ -6,7 +6,7 @@ export function create({ blocks, tag_ids: tagIds, ...rest }) {
     ...rest
   }
 
-  return Post.forge(attributes).save().tap(post => {
+  return Post.forge(attributes).save().then(post => {
     return post.tags().attach(tagIds).then(() => post.refresh())
   })
 }

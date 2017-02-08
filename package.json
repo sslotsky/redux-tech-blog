@@ -4,7 +4,7 @@
   "description": "",
   "main": "./app/main.js",
   "scripts": {
-    "server": "npm run build-client && babel-node app/server.jsx --presets es2015,react,stage-2",
+    "server": "npm run build-client && babel-node app/server.jsx --presets es2015,react,stage-0",
     "build-client": "webpack ./app/main.jsx",
     "dev-client": "webpack-dev-server --progress --colors -w --config ./webpack.config.live.js"
   },
@@ -42,6 +42,7 @@
     "json-loader": "^0.5.4",
     "jsonwebtoken": "^7.2.1",
     "knex": "^0.12.6",
+    "lodash.isempty": "^4.4.0",
     "morgan": "^1.7.0",
     "pg": "^6.1.2",
     "pubsub-js": "^1.5.4",

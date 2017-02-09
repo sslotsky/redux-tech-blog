@@ -1,12 +1,5 @@
 import isEmpty from 'lodash.isempty'
-
-const unique = (model, values, field) => {
-  return model.where({ [field]: values[field] }).fetchAll().then(records => {
-    if (records.some(r => r.id !== values.id)) {
-      return 'Dups!'
-    }
-  })
-}
+import { unique } from './rules'
 
 export function validator(model, validations) {
   const values = model.toJSON()
@@ -17,21 +10,27 @@ export function validator(model, validations) {
   }
 
   const validateField = rule => f =>
-    rule(model, values, f).then(message => {
+    rule(f, values, model).then(message => {
       if (message) {
         applyError(f, message)
       }
     })
 
   const rules = fields => ({
-    unique: () => {
-      return Promise.all(fields.map(validateField(unique)))
+    unique: (message) => {
+      return Promise.all(fields.map(validateField(unique(message))))
+    },
+    satisfies: (...rules) => {
+      return Promise.all(rules.reduce((all, rule) =>
+        all.concat(fields.map(validateField(unique))),
+        []
+      ))
     }
   })
 
   const v = {
-    validate: (...fields) => rules(fields),
-    resolve: (...validations) => Promise.all(validations)
+    fact: (...fields) => rules(fields),
+    factCheck: (...validations) => Promise.all(validations)
   }
 
   return validations(v).then(() => errors)
@@ -43,20 +42,20 @@ export class ValidationException {
   }
 }
 
-export function validateThis(bookshelf, params) {
+export function factCheck(bookshelf, params) {
   const bookshelfModel = bookshelf.Model
   bookshelf.Model = bookshelf.Model.extend({
     constructor: function () {
       bookshelfModel.apply(this, arguments)
 
       if (this.validate) {
-        this.on('saving', model => {
-          return validator(model, this.validate).then(errors => {
+        this.on('saving', model =>
+          validator(model, this.validate).then(errors => {
             if (!isEmpty(errors)) {
-              throw errors
+              throw new ValidationException(errors)
             }
           })
-        })
+        )
       }
     }
   })

@@ -1,4 +1,5 @@
 import * as posts from 'SERVICES/posts'
+import { ValidationException } from '../validation'
 
 export default function postsController(routes) {
   routes.post('/posts', (req, res) => {
@@ -7,8 +8,12 @@ export default function postsController(routes) {
       ...req.body
     }
 
-    posts.create(post).then(p => res.json({ post: p })).catch(errors => {
-      res.status(422).json({ errors })
+    posts.create(post).then(p => res.json({ post: p })).catch(e => {
+      if (e instanceof ValidationException) {
+        res.status(422).json({ errors: e.errors })
+      } else {
+        throw e
+      }
     })
   })
 

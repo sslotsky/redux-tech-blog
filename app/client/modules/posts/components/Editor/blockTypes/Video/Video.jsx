@@ -1,23 +1,16 @@
 import React from 'react'
+import { Field } from 'redux-form'
+import { FormInput } from 'react-violet-forms'
 
 export default function Video(props) {
-  const { value: block } = props.input
-  const input = {
-    value: block.url,
-    onChange: e => props.input.onChange({
-      ...block,
-      url: e.target.value
-    })
-  }
-
   return (
     <fieldset className="soft-half">
       <h3>Video</h3>
-      <div className='form-group'>
-        <label>Video URL:
-          <input type="text" {...input} />
-        </label>
-      </div>
+      <Field
+        name={`${props.input.name}.url`}
+        component={FormInput}
+        label="Video URL:"
+      />
     </fieldset>
   )
 }

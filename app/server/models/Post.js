@@ -1,5 +1,6 @@
 import { bookshelf } from '../connection'
 import Tag from './Tag'
+import { unique, required } from '../validation/rules'
 
 const { Model } = bookshelf
 
@@ -10,7 +11,10 @@ const Post = Model.extend({
   },
   validate: function(book) {
     return book.factCheck(
-      book.fact('title').unique('Title already taken!')
+      book.fact('title').satisfies(
+        unique('Title already taken!'),
+        required('Title cannot be blank!')
+      )
     )
   }
 })

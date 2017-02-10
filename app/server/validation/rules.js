@@ -6,3 +6,10 @@ export const unique = (message = 'duplicate') => (field, values, model) => {
   })
 }
 
+export const required = (message = 'required') => (field, values) => {
+  if (values[field]) {
+    return Promise.resolve()
+  }
+
+  return Promise.resolve(message)
+}

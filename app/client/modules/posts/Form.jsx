@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react'
 import { connect } from 'react-redux'
 import { reduxForm, arrayPush, arraySwap } from 'redux-form'
+import { validator } from 'validate-this'
 import Editor from './components/Editor/Editor'
 import Preview from './components/Preview/Preview'
 import { search, create } from '../tags/actions'
@@ -35,6 +36,22 @@ const actions = {
   createTag: create
 } 
 
+const required = val => {
+  if (!val) {
+    return 'Required'
+  }
+}
+
 export default reduxForm({
-  form: 'post'
+  form: 'post',
+  validate: values => validator(values, v => {
+    v.validate('title').satisfies(required)
+    v.validateChildren('blocks', (bv, block) => {
+      v.validate('format').satisfies(required)
+
+      if (block.format === 'video') {
+        bv.validate('url').satisfies(required)
+      }
+    })
+  })
 })(connect(undefined, actions)(Form))

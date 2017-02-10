@@ -22,7 +22,7 @@ export function validator(model, validations) {
     },
     satisfies: (...rules) => {
       return Promise.all(rules.reduce((all, rule) =>
-        all.concat(fields.map(validateField(unique))),
+        all.concat(fields.map(validateField(rule))),
         []
       ))
     }

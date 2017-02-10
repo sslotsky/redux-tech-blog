@@ -47,7 +47,7 @@ export default reduxForm({
   validate: values => validator(values, v => {
     v.validate('title').satisfies(required)
     v.validateChildren('blocks', (bv, block) => {
-      v.validate('format').satisfies(required)
+      bv.validate('format').satisfies(required)
 
       if (block.format === 'video') {
         bv.validate('url').satisfies(required)

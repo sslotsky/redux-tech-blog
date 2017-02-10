@@ -1,13 +1,20 @@
 import { SubmissionError } from 'redux-form'
+import { push } from 'react-router-redux'
+import { composables } from 'violet-paginator'
 import * as actionTypes from './actionTypes'
 import api from 'CLIENT/api'
+
+const pageActions = composables({ listId: 'posts' })
 
 export function fetchPosts({ query }) {
   return () => api.posts.browse(query)
 }
 
 export function submit(data) {
-  return dispatch => api.posts.create(data).catch(e => {
+  return dispatch => api.posts.create(data).then(() => {
+    dispatch(pageActions.expire())
+    dispatch(push('/'))
+  }).catch(e => {
     throw new SubmissionError(e.response.data.errors)
   })
 }

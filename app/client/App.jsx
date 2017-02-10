@@ -12,7 +12,7 @@ export default ({ children }) => (
     </header>
     <nav>
       <ToggleSession />
-      <Link to='/'>New Post</Link>
+      <Link to='/'>Browse Posts</Link>
     </nav>
     <div className="pure-g">
       <Sidebar />

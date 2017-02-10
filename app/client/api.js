@@ -31,6 +31,7 @@ export default {
     })
   },
   posts: {
+    browse: query => adapter.get('/posts', { params: query }),
     create: data => adapter.post('/posts', data)
   },
   tags: {

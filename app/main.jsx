@@ -10,6 +10,7 @@ import { Provider } from 'react-redux'
 import DevTools from 'CLIENT/DevTools'
 import { authenticated, logout } from 'MODULES/session/actions'
 import PubSub from 'pubsub-js'
+import { configurePageParams } from 'violet-paginator'
 
 const router = routerMiddleware(browserHistory)
 const store = createStore(
@@ -27,6 +28,10 @@ PubSub.subscribe('session.expired', () => {
 })
 
 const history = syncHistoryWithStore(browserHistory, store)
+
+configurePageParams({
+  totalCount: 'totalCount'
+})
 
 ReactDOM.render((
   <Provider store={store}>

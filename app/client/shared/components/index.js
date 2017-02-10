@@ -1,0 +1,1 @@
+export Authenticated from './Authenticated'

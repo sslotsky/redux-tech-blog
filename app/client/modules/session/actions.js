@@ -1,6 +1,7 @@
 import api from 'CLIENT/api'
 import { SubmissionError } from 'redux-form'
 import { push } from 'react-router-redux'
+import { expireAll } from 'violet-paginator'
 import * as actionTypes from './actionTypes'
 
 export function authenticated(user) {
@@ -8,9 +9,10 @@ export function authenticated(user) {
 }
 
 export function logout() {
-  return dispatch => api.session.logout().then(() =>
+  return dispatch => api.session.logout().then(() => {
     dispatch({ type: actionTypes.LOGOUT })
-  )
+    dispatch(expireAll())
+  })
 }
 
 export function authenticate(data) {

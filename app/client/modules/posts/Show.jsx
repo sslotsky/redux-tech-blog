@@ -19,9 +19,9 @@ export class Snippet extends Component {
 
   options() {
     return {
+      theme: 'erlang-dark',
       ...this.props.options,
       mode: this.props.language,
-      theme: 'erlang-dark'
     }
   }
 

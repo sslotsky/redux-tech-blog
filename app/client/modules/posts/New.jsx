@@ -7,7 +7,7 @@ function New({ profile, submit }) {
   return (
     <Form
       onSubmit={submit}
-      initialValues={{ blocks: [] }}
+      initialValues={{ blocks: [], tag_ids: [] }}
     />
   )
 }

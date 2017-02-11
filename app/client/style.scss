@@ -1,5 +1,6 @@
 @import '../../vendor/styles/font-awesome/css/font-awesome.min.css';
 @import '../../node_modules/codemirror/theme/erlang-dark.css';
+@import '../../node_modules/codemirror/theme/neo.css';
 @import '../../node_modules/codemirror/lib/codemirror.css';
 
 header {
@@ -163,5 +164,18 @@ ul.autocomplete {
     outline: none;
     background-color: transparent;
     width: 100%;
+  }
+}
+
+.list-preview {
+  overflow: hidden;
+
+  &::before {
+    height: 18rem;
+    content: '';
+    background: linear-gradient(to top, white, transparent);
+    position: absolute;
+    width: 80%;
+    z-index: 100;
   }
 }

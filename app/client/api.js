@@ -37,5 +37,8 @@ export default {
   tags: {
     search: name => adapter.get('/tags', { params: { name } }),
     create: name => adapter.post('/tags', { name })
+  },
+  assets: {
+    create: formData => adapter.post('/assets', formData)
   }
 }

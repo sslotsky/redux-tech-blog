@@ -1,5 +1,5 @@
 import isEmpty from 'lodash.isempty'
-import { unique } from './rules'
+import { unique, required } from './rules'
 
 export function validator(model, validations) {
   const values = model.toJSON()
@@ -19,6 +19,9 @@ export function validator(model, validations) {
   const rules = fields => ({
     unique: (message) => {
       return Promise.all(fields.map(validateField(unique(message))))
+    },
+    required: (message) => {
+      return Promise.all(fields.map(validateField(required(message))))
     },
     satisfies: (...rules) => {
       return Promise.all(rules.reduce((all, rule) =>

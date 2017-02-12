@@ -5,6 +5,7 @@ import EditProfile from 'MODULES/profile/Edit'
 import New from 'MODULES/posts/New'
 import Login from 'MODULES/session/components/Login/Login'
 import Browse from 'MODULES/posts/components/Browse'
+import Content from 'MODULES/content/Content'
 
 export default (
   <Route path="/" component={App}>
@@ -14,6 +15,7 @@ export default (
     <IndexRoute component={Browse} />
     <Route path='posts/new' component={New} />
     <Route path="login" component={Login} />
+    <Route path="content" component={Content} />
   </Route>
 )
 

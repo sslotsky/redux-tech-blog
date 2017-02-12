@@ -168,14 +168,50 @@ ul.autocomplete {
 }
 
 .list-preview {
+  height: 10rem;
   overflow: hidden;
 
+  .CodeMirror {
+    height: auto;
+  }
+
   &::before {
-    height: 18rem;
+    height: 10rem;
+    overflow: hidden;
     content: '';
     background: linear-gradient(to top, white, transparent);
     position: absolute;
     width: 80%;
     z-index: 100;
+  }
+}
+
+.uploads {
+  height: auto;
+  width: 100%;
+}
+
+.image-preview {
+  display: inline-block;
+  padding: 1rem;
+
+  .header {
+    .remove {
+      font-size: .75rem;
+      text-align: right;
+      width: 100%;
+      padding: 0;
+      padding-right: .5rem;
+      color: black;
+      border-radius: .25rem .25rem 0 0;
+      background-color: rgb(176, 202, 219);
+      &:hover {
+        background-color: orange;
+      }
+    }
+  }
+
+  img {
+    margin-top: 0;
   }
 }

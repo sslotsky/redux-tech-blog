@@ -29,6 +29,7 @@ module.exports = {
     }]
   },
   plugins: [
+    new webpack.EnvironmentPlugin(['MARMALADE_AWS_ACCESS', 'MARMALADE_AWS_SECRET']),
     new webpack.DefinePlugin({
       API_BASE: JSON.stringify('/api')
     })

@@ -2,7 +2,9 @@ import * as posts from 'SERVICES/posts'
 import { ValidationException } from '../validation'
 
 export default function postsController(routes) {
-  routes.post('/posts', (req, res) => {
+  const { authorized, open } = routes
+
+  authorized.post('/posts', (req, res) => {
     const post = {
       author_id: req.decoded.id,
       ...req.body
@@ -17,7 +19,7 @@ export default function postsController(routes) {
     })
   })
 
-  routes.get('/posts', (req, res) => {
+  open.get('/posts', (req, res) => {
     posts.list().then(payload => res.json(payload))
   })
 

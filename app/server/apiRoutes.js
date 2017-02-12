@@ -6,7 +6,11 @@ import { posts, tags, assets, registerRoutes } from './controllers'
 
 const getUser = users.lookup
 
-const apiRoutes = secureRoutes(express.Router(), { getUser })
-registerRoutes(apiRoutes, posts, tags, assets)
+const routes = {
+  authorized: secureRoutes(express.Router(), { getUser }),
+  open: express.Router()
+}
 
-export default apiRoutes
+registerRoutes(routes, posts, tags, assets)
+
+export default routes

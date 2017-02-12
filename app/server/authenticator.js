@@ -1,12 +1,9 @@
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt-nodejs'
-import cors from 'cors'
 
 const SECRET = 'yaybourbon'
 
 export function secureRoutes(routes, options) {
-  routes.use(cors({ origin: 'http://localhost:3000', credentials: true }))
-
   routes.post('/authenticate', (req, res) => {
     const { username, password } = req.body
 

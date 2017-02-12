@@ -1,4 +1,5 @@
 import s3 from 's3'
+import fs from 'fs'
 
 import client from 'SERVER/lib/s3'
 import Asset from 'MODELS/Asset'
@@ -18,6 +19,12 @@ export function upload(files, userId) {
       uploader.on('end', () => {
         const url = s3.getPublicUrl(bucket, key)
         Asset.forge({ url, user_id: userId }).save().then(resolve)
+
+        fs.unlink(f.path, err => {
+          if (err) {
+            console.log(err)
+          }
+        })
       })
     })
   })

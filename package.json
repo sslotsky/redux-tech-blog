@@ -71,6 +71,6 @@
     "s3": "^4.4.0",
     "url-loader": "^0.5.7",
     "validate-this": "^1.2.3",
-    "violet-paginator": "^2.0.4"
+    "violet-paginator": "^2.0.5"
   }
 }

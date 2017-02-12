@@ -11,6 +11,7 @@ export function authenticated(user) {
 export function logout() {
   return dispatch => api.session.logout().then(() => {
     dispatch({ type: actionTypes.LOGOUT })
+    dispatch(push('/login'))
     dispatch(expireAll())
   })
 }

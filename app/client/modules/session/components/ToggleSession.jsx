@@ -7,13 +7,8 @@ export function ToggleSession({ authenticated, navigate, signout }) {
   const login = () => navigate('/login')
 
   if (authenticated) {
-    const onClick = () => {
-      signout()
-      login()
-    }
-
     return (
-      <button onClick={onClick}>Logout</button>
+      <button onClick={signout}>Logout</button>
     )
   }
 

@@ -3,14 +3,15 @@ import ReactDOM from 'react-dom'
 import { Router, browserHistory } from 'react-router'
 import { syncHistoryWithStore, routerMiddleware, push } from 'react-router-redux'
 import thunk from 'redux-thunk'
-import routes from 'CLIENT/config/routes'
-import reducer from 'CLIENT/reducer'
 import { compose, createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
+import PubSub from 'pubsub-js'
+
+import './client/config/globalSettings'
 import DevTools from 'CLIENT/DevTools'
 import { authenticated, logout } from 'MODULES/session/actions'
-import PubSub from 'pubsub-js'
-import { configurePageParams } from 'violet-paginator'
+import routes from 'CLIENT/config/routes'
+import reducer from 'CLIENT/reducer'
 
 const router = routerMiddleware(browserHistory)
 const store = createStore(
@@ -28,10 +29,6 @@ PubSub.subscribe('session.expired', () => {
 })
 
 const history = syncHistoryWithStore(browserHistory, store)
-
-configurePageParams({
-  totalCount: 'totalCount'
-})
 
 ReactDOM.render((
   <Provider store={store}>

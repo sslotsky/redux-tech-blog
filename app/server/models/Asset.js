@@ -2,7 +2,7 @@ import { bookshelf } from '../connection'
 import User from './User'
 import { required } from '../validation/rules'
 
-const { Model } = bookshelf
+const { Model, Collection } = bookshelf
 
 const Asset = Model.extend({
   tableName: 'assets',
@@ -18,3 +18,4 @@ const Asset = Model.extend({
 
 export default Asset
 
+export const Assets = Collection.extend({ model: Asset })

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Dropzone from 'react-dropzone'
 import { connect } from 'react-redux'
 import { upload } from './actions'
+import GalleryImage from './GalleryImage'
 
 const filePreview = remove => (f, i) => {
   const click = e => {
@@ -51,16 +52,21 @@ export class Content extends Component {
     )
 
     return (
-      <div className="soft-half outset">
-        <Dropzone className='uploads' onDrop={files => this.onDrop(files)} accept="image/*">
-          <h2>Click to upload files...</h2>
-          <div>
-            {files.map(filePreview(remove))}
-          </div>
-          <div className="soft-quarter">
-            {save}
-          </div>
-        </Dropzone>
+      <div>
+        <div className="soft-half outset">
+          <Dropzone className='uploads' onDrop={files => this.onDrop(files)} accept="image/*">
+            <h2>Click to upload files...</h2>
+            <div>
+              {files.map(filePreview(remove))}
+            </div>
+            <div className="soft-quarter">
+              {save}
+            </div>
+          </Dropzone>
+        </div>
+        <div className="soft-half outset">
+          <GalleryImage />
+        </div>
       </div>
     )
   }

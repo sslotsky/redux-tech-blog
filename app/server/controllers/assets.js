@@ -6,4 +6,8 @@ export default function assetsController(routes) {
       res.json({ assets })
     )
   })
+
+  routes.authorized.get('/assets', (req, res) => {
+    service.list(req.decoded.id, req.query.page).then(payload => res.json(payload))
+  })
 }

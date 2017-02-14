@@ -215,3 +215,19 @@ ul.autocomplete {
     margin-top: 0;
   }
 }
+
+.gallery-image {
+  display: inline-block;
+  margin-right: 1rem;
+
+  img {
+    max-height: 5rem;
+    max-width: 100%;
+    border-radius: .25rem;
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: .125rem .125rem orange;
+    }
+  }
+}

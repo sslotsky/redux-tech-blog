@@ -4,6 +4,16 @@ import fs from 'fs'
 import client from 'SERVER/lib/s3'
 import Asset, { Assets } from 'MODELS/Asset'
 
+export function list(userId, page = 1, pageSize = 25) {
+  return Asset.where({ user_id: userId }).fetchPage({
+    page,
+    pageSize
+  }).then(resp => ({
+    totalCount: resp.pagination.rowCount,
+    results: resp.toJSON()
+  }))
+}
+
 export function upload(files, userId) {
   const uploaders = files.map(f => {
     const [bucket, key] = ['slotsky.marmalade', `${userId}/assets/${f.name}`]
@@ -17,7 +27,7 @@ export function upload(files, userId) {
 
     return new Promise((resolve, reject) => {
       uploader.on('end', () => {
-        const url = s3.getPublicUrl(bucket, key)
+        const url = s3.getPublicUrl(bucket, key, 'us-west-2')
         resolve({ url, user_id: userId })
 
         fs.unlink(f.path, err => {

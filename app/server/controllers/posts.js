@@ -20,7 +20,7 @@ export default function postsController(routes) {
   })
 
   open.get('/posts', (req, res) => {
-    posts.list().then(payload => res.json(payload))
+    posts.list(req.query.page, req.query.pageSize).then(payload => res.json(payload))
   })
 
   return routes

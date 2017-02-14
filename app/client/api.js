@@ -39,6 +39,7 @@ export default {
     create: name => adapter.post('/tags', { name })
   },
   assets: {
+    getPage: page => adapter.get('/assets', { params: { page } }),
     create: formData => adapter.post('/assets', formData)
   }
 }

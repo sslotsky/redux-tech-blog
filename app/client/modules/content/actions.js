@@ -7,10 +7,12 @@ export function upload(files) {
     formData.append('images[]', f, f.name)
   })
 
-  return () => api.assets.create(formData)
+  return dispatch => api.assets.create(formData).then(resp =>
+    dispatch({ type: actionTypes.EXPIRE })
+  )
 }
 
-export function scroll(nextPage) {
+export function scroll(nextPage = 1) {
   return dispatch => api.assets.getPage(nextPage).then(resp =>
     dispatch({ type: actionTypes.FETCHED, assets: resp.data.results })
   )

@@ -170,25 +170,30 @@ ul.autocomplete {
 .list-preview {
   height: 10rem;
   overflow: hidden;
+  position: relative;
 
   .CodeMirror {
     height: auto;
   }
 
-  &::before {
-    height: 10rem;
-    overflow: hidden;
+  &::after {
     content: '';
     background: linear-gradient(to top, white, transparent);
     position: absolute;
-    width: 80%;
+    top: 0;
+    height: 100%;
+    width: 100%;
     z-index: 100;
   }
 }
 
-.uploads {
-  height: auto;
-  width: 100%;
+.upload-zone {
+  position: relative;
+
+  .uploads {
+    height: auto;
+    width: 100%;
+  }
 }
 
 .image-preview {
@@ -218,16 +223,41 @@ ul.autocomplete {
 
 .gallery-image {
   display: inline-block;
-  margin-right: 1rem;
+  padding: .25rem .25rem .125rem;
+  margin-right: .5rem;
+  border-radius: .25rem;
+
+  &:hover {
+    cursor: pointer;
+    background-color: orange;
+  }
 
   img {
+    margin: 0;
     max-height: 5rem;
     max-width: 100%;
     border-radius: .25rem;
-
-    &:hover {
-      cursor: pointer;
-      box-shadow: .125rem .125rem orange;
-    }
   }
+}
+
+.image-picker {
+  img {
+    max-width: 100%;
+  }
+}
+
+.loading-overlay {
+  &::after {
+    content: '';
+    background-color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.gallery {
+  height: 20rem;
+  overflow: auto;
 }

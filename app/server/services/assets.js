@@ -5,7 +5,7 @@ import client from 'SERVER/lib/s3'
 import Asset, { Assets } from 'MODELS/Asset'
 
 export function list(userId, page = 1, pageSize = 25) {
-  return Asset.where({ user_id: userId }).fetchPage({
+  return Asset.where({ user_id: userId }).orderBy('created_at', 'DESC').fetchPage({
     page,
     pageSize
   }).then(resp => ({

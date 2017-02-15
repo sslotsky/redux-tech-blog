@@ -5,7 +5,8 @@ import * as actionTypes from './actionTypes'
 const initialState = Map({
   assets: List(),
   page: 0,
-  done: false
+  done: false,
+  stale: false
 })
 
 function appendAssets(state, action) {
@@ -16,6 +17,11 @@ function appendAssets(state, action) {
   })
 }
 
+function expire() {
+  return initialState.set('stale', true)
+}
+
 export default resolveEach(initialState, {
-  [actionTypes.FETCHED]: appendAssets
+  [actionTypes.FETCHED]: appendAssets,
+  [actionTypes.EXPIRE]: expire
 })

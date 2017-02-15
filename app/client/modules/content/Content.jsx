@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Dropzone from 'react-dropzone'
+import classnames from 'classnames'
 import { connect } from 'react-redux'
 import { upload } from './actions'
 import GalleryImage from './GalleryImage'
@@ -24,7 +25,8 @@ const filePreview = remove => (f, i) => {
 
 export class Content extends Component {
   state = {
-    files: []
+    files: [],
+    loading: false
   }
 
   onDrop(acceptedFiles) {
@@ -32,7 +34,7 @@ export class Content extends Component {
   }
 
   render() {
-    const { files } = this.state
+    const { files, loading } = this.state
     const { submit } = this.props
 
     const remove = file => {
@@ -41,7 +43,10 @@ export class Content extends Component {
 
     const onSubmit = e => {
       e.stopPropagation()
-      submit(files)
+      this.setState({ loading: true })
+      submit(files).then(() =>
+        this.setState({ files: [], loading: false })
+      )
     }
 
     const save = files.length > 0 && (
@@ -51,9 +56,13 @@ export class Content extends Component {
       </button>
     )
 
+    const classes = classnames('soft-half', 'outset', 'upload-zone', {
+      'loading-overlay': loading
+    })
+
     return (
       <div>
-        <div className="soft-half outset">
+        <div className={classes}>
           <Dropzone className='uploads' onDrop={files => this.onDrop(files)} accept="image/*">
             <h2>Click to upload files...</h2>
             <div>

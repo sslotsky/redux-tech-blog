@@ -247,20 +247,21 @@ ul.tag-box-pills {
     padding: 1rem;
     border: 1px solid rgb(238, 238, 238);
     border-radius: .25rem;
-    background-color: white;
+    background-color: beige;
     position: absolute;
     left: 2rem;
     margin-top: 0;
 
     li {
       cursor: pointer;
+      border-radius: .25rem;
 
       &.considering {
         background-color: #7e69c6;
       }
 
       .option-text {
-        padding-left: 0.5rem;
+        padding: 0 .5rem 0 .5rem;
       }
     }
   }
@@ -272,4 +273,13 @@ ul.tag-box-pills {
     background-color: transparent;
     width: 100%;
   }
+}
+
+.button-list button {
+  margin-right: 1rem;
+}
+
+button[disabled] {
+  cursor: not-allowed;
+  background-color: #999;
 }

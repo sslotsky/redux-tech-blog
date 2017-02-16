@@ -81,8 +81,8 @@ export class GalleryImage extends Component {
               <h2>Gallery</h2>
               <div ref={node => this.gallery = node} className="gallery" onScroll={infiniteLoad}>
                 {list}
-                {notice}
               </div>
+              {notice}
             </div>
           </Modal>
         </div>

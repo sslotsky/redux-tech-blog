@@ -8,7 +8,7 @@ export default class AddBlockButton extends Component {
   }
 
   render() {
-    const { addSnippet, addMarkdown, addVideo } = this.props.actions;
+    const { addSnippet, addBlock } = this.props.actions;
     const close = action => () => {
       action()
       this.setState({ open: false })
@@ -25,10 +25,13 @@ export default class AddBlockButton extends Component {
       }]
     }, {
       text: 'Add Markdown',
-      onClick: close(addMarkdown)
+      onClick: close(addBlock('markdown'))
     }, {
       text: 'Add Video',
-      onClick: close(addVideo)
+      onClick: close(addBlock('video'))
+    }, {
+      text: 'Add Image',
+      onClick: close(addBlock('image'))
     }]
 
     const { open } = this.state

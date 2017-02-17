@@ -6,7 +6,7 @@ import { DragSource, DropTarget } from 'react-dnd'
 import { getEmptyImage } from 'react-dnd-html5-backend'
 import { cardSource, cardTarget, collectSource, collectTarget } from './dragDropConfig'
 import classnames from 'classnames'
-import { Video } from './components/cardTypes'
+import { Video, Image } from './components/cardTypes'
 
 function SnippetCard({ language, text }) {
   const options = {
@@ -37,7 +37,8 @@ function MarkdownCard({ text }) {
 const components = {
   snippet: SnippetCard,
   markdown: MarkdownCard,
-  video: Video
+  video: Video,
+  image: Image
 }
 
 class Card extends Component {

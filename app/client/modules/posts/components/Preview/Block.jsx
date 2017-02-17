@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { Snippet, Markdown } from 'POSTS/Show'
-import { Video } from './blockTypes'
+import { Video, Image } from './blockTypes'
 
 function SnippetPreview(props) {
   const options = {
@@ -18,7 +18,8 @@ function SnippetPreview(props) {
 const components = {
   snippet: SnippetPreview,
   markdown: Markdown,
-  video: Video
+  video: Video,
+  image: Image
 }
 
 export default function Block({ input }) {

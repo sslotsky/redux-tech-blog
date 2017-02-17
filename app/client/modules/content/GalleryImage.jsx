@@ -20,6 +20,10 @@ export class GalleryImage extends Component {
     imageUrl: undefined
   }
 
+  static defaultProps = {
+    onPick: () => {}
+  }
+
   componentDidMount() {
     this.props.load()
   }
@@ -32,15 +36,16 @@ export class GalleryImage extends Component {
 
   render() {
     const { visible, imageUrl } = this.state
-    const { assets, page, loading, done, load } = this.props
+    const { assets, page, loading, done, load, onPick, url } = this.props
 
-    const img = imageUrl && (
-      <img src={imageUrl} />
+    const src = imageUrl || url;
+    const img = src && (
+      <img src={src} />
     )
 
-    const pick = url => {
-      this.setState({ imageUrl: url })
-      this.setState({ visible: false })
+    const pick = imageUrl => {
+      this.setState({ imageUrl, visible: false })
+      onPick(imageUrl)
     }
 
     const renderImage = (asset, index) => renderAsset(asset, index, pick)

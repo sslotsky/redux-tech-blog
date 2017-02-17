@@ -6,22 +6,22 @@ import AddBlockButton from './AddBlockButton'
 
 import Snippet from 'POSTS/Snippet'
 import Markdown from 'POSTS/Markdown'
-import { Video } from './blockTypes'
+import { Video, Image } from './blockTypes'
 
 const components = {
   snippet: Snippet,
   markdown: Markdown,
-  video: Video
+  video: Video,
+  image: Image
 }
 
 export function renderBlock(member, index, fields) {
   return (
-    <div key={index}>
+    <div key={index} className="block-editor">
       <Field
         name={member}
         component={components[fields.get(index).format]}
       />
-      <hr />
     </div>
   )
 }
@@ -36,9 +36,8 @@ export function renderBlocks({ fields }) {
 
 export default function Editor({
   toggle,
-  addMarkdown,
   addSnippet,
-  addVideo,
+  addBlock,
   searchTags,
   createTag,
   ...rest
@@ -52,9 +51,8 @@ export default function Editor({
   )
 
   const actions = {
-    addMarkdown,
     addSnippet,
-    addVideo
+    addBlock
   }
 
   return (

@@ -29,6 +29,7 @@ export default class Tags extends Component {
 
     return (
       <div className="tags">
+        <label>Tags</label>
         <TagBoxAsync
           fetch={search}
           selected={selected}

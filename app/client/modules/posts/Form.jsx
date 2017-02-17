@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import { reduxForm, arrayPush, arraySwap } from 'redux-form'
 import { validator } from 'validate-this'
 import Editor from './components/Editor/Editor'
@@ -31,10 +32,11 @@ class Form extends Component {
 function actions(dispatch) {
   return {
     addSnippet: language => () => dispatch(arrayPush('post', 'blocks', { format: 'snippet', language })),
-    addMarkdown: () => dispatch(arrayPush('post', 'blocks', { format: 'markdown' })),
-    addVideo: () => dispatch(arrayPush('post', 'blocks', { format: 'video' })),
-    searchTags: () => dispatch(search()),
-    createTag: () => dispatch(create()),
+    addBlock: format => () => dispatch(arrayPush('post', 'blocks', { format })),
+    ...bindActionCreators({
+      searchTags: search,
+      createTag: create
+    }, dispatch)
   }
 }
 

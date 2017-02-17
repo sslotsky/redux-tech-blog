@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import { Field, FieldArray } from 'redux-form'
 import { FormInput, Save } from 'react-violet-forms'
 import Tags from './Tags'
+import AddBlockButton from './AddBlockButton'
 
 import Snippet from 'POSTS/Snippet'
 import Markdown from 'POSTS/Markdown'
@@ -50,6 +51,12 @@ export default function Editor({
     tags.map(t => ({ label: t.name, value: t.id }))
   )
 
+  const actions = {
+    addMarkdown,
+    addSnippet,
+    addVideo
+  }
+
   return (
     <div className="soft-half inset">
       <Field
@@ -68,15 +75,7 @@ export default function Editor({
         create={create}
       />
       <div className='button-list'>
-        <button type="button" onClick={addSnippet}>
-          Add Snippet
-        </button>
-        <button type="button" onClick={addMarkdown}>
-          Add Markdown
-        </button>
-        <button type="button" onClick={addVideo}>
-          Add Video
-        </button>
+        <AddBlockButton actions={actions} />
         <Save {...rest} />
         <button type="button" onClick={toggle}>
           Preview

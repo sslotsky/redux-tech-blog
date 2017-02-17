@@ -28,13 +28,15 @@ class Form extends Component {
   }
 }
 
-const actions = {
-  addSnippet: () => arrayPush('post', 'blocks', { format: 'snippet', language: 'jsx' }),
-  addMarkdown: () => arrayPush('post', 'blocks', { format: 'markdown' }),
-  addVideo: () => arrayPush('post', 'blocks', { format: 'video' }),
-  searchTags: search,
-  createTag: create
-} 
+function actions(dispatch) {
+  return {
+    addSnippet: language => () => dispatch(arrayPush('post', 'blocks', { format: 'snippet', language })),
+    addMarkdown: () => dispatch(arrayPush('post', 'blocks', { format: 'markdown' })),
+    addVideo: () => dispatch(arrayPush('post', 'blocks', { format: 'video' })),
+    searchTags: () => dispatch(search()),
+    createTag: () => dispatch(create()),
+  }
+}
 
 const required = val => {
   if (!val) {

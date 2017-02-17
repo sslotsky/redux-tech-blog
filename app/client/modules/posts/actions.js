@@ -10,6 +10,12 @@ export function fetchPosts({ query }) {
   return () => api.posts.browse(query)
 }
 
+export function fetchPost(id) {
+  return dispatch => api.posts.show(id).then(resp =>
+    dispatch({ type: actionTypes.FETCHED, post: resp.data })
+  )
+}
+
 export function submit(data) {
   return dispatch => api.posts.create(data).then(() => {
     dispatch(pageActions.expire())

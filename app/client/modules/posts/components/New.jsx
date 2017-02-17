@@ -1,13 +1,13 @@
 import React, { PropTypes, Component } from 'react'
 import { connect } from 'react-redux'
 import Form from './Form'
-import * as actions from './actions'
+import * as actions from '../actions'
 
 function New({ profile, submit }) {
   return (
     <Form
       onSubmit={submit}
-      initialValues={{ blocks: [], tag_ids: [] }}
+      initialValues={{ blocks: [], tags: [] }}
     />
   )
 }

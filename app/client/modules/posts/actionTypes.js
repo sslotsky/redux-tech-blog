@@ -1,1 +1,1 @@
-export const SUBMIT = 'posts/SUBMIT'
+export const FETCHED = 'posts/FETCHED'

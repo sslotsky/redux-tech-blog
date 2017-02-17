@@ -67,7 +67,7 @@ export default function Editor({
         component={renderBlocks}
       />
       <Field
-        name="tag_ids"
+        name="tags"
         component={Tags}
         search={search}
         create={create}

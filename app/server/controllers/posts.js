@@ -23,5 +23,9 @@ export default function postsController(routes) {
     posts.list(req.query.page, req.query.pageSize).then(payload => res.json(payload))
   })
 
+  open.get('/posts/:id', (req, res) => {
+    posts.show(req.params.id).then(post => res.json(post))
+  })
+
   return routes
 }

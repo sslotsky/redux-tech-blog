@@ -5,6 +5,7 @@ import { routerReducer as routing } from 'react-router-redux'
 import { reducer as formReducer } from 'redux-form'
 import { createPaginator } from 'violet-paginator'
 import content from 'MODULES/content/reducer'
+import post from 'MODULES/posts/reducer'
 
 import { fetchPosts } from 'MODULES/posts/actions'
 
@@ -14,6 +15,7 @@ export default combineReducers({
   session,
   form: formReducer,
   content,
+  post,
   posts: createPaginator({
     listId: 'posts',
     fetch: fetchPosts

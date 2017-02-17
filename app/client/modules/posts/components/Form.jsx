@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { reduxForm, arrayPush, arraySwap } from 'redux-form'
 import { validator } from 'validate-this'
-import Editor from './components/Editor/Editor'
-import Preview from './components/Preview/Preview'
-import { search, create } from '../tags/actions'
+import Editor from './Editor/Editor'
+import Preview from './Preview/Preview'
+import { search, create } from 'MODULES/tags/actions'
 
 class Form extends Component {
   state = {
@@ -48,6 +48,7 @@ const required = val => {
 
 export default reduxForm({
   form: 'post',
+  enableReinitialize: true,
   validate: values => validator(values, v => {
     v.validate('title').satisfies(required)
     v.validateChildren('blocks', (bv, block) => {

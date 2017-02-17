@@ -2,7 +2,7 @@ import React from 'react'
 import { decorators } from 'violet-paginator'
 
 import { Snippet, Markdown } from 'POSTS/Show'
-import { Video } from 'POSTS/components/Preview/blockTypes'
+import { Video, Image } from 'POSTS/components/Preview/blockTypes'
 
 function SnippetPreview(props) {
   const options = {
@@ -22,7 +22,8 @@ function SnippetPreview(props) {
 const components = {
   snippet: SnippetPreview,
   markdown: Markdown,
-  video: Video
+  video: Video,
+  image: Image
 }
 
 export function renderPost(post, i) {

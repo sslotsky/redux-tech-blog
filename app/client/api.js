@@ -32,7 +32,8 @@ export default {
   },
   posts: {
     browse: query => adapter.get('/posts', { params: query }),
-    create: data => adapter.post('/posts', data)
+    create: data => adapter.post('/posts', data),
+    show: id => adapter.get(`/posts/${id}`)
   },
   tags: {
     search: name => adapter.get('/tags', { params: { name } }),

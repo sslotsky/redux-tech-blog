@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react'
-import { Markdown as ShowMarkdown } from './Show'
+import { Field } from 'redux-form'
+import { Markdown as MarkdownField } from './components/Editor/blockTypes'
 import { collapsible } from 'SHARED/decorators'
 
 export class Markdown extends Component {
@@ -7,33 +8,16 @@ export class Markdown extends Component {
     input: PropTypes.object
   }
 
-  handleChange(text) {
-    const { input } = this.props
-    const val = {
-      ...input.value,
-      text
-    }
-
-    input.onChange(val)
-  }
-
-  shouldComponentUpdate(nextProps) {
-    const { text } = this.props.input.value
-    const { value } = nextProps.input
-
-    return text != value.text
-  }
-
   render() {
-    const { text } = this.props.input.value
+    const { name } = this.props.input
 
     return (
       <div>
         <fieldset className="soft-half">
-          <div className="form-group">
-            <label>Text</label>
-            <ShowMarkdown text={text} onChange={::this.handleChange} />
-          </div>
+          <Field
+            name={`${name}.text`}
+            component={MarkdownField}
+          />
         </fieldset>
       </div>
     )

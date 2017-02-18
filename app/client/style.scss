@@ -354,3 +354,28 @@ h2 i.edit {
 h2:hover i.edit {
   visibility: visible;
 }
+
+.tag-preview {
+  li {
+    height: 2rem;
+    position: relative;
+    display: inline-block;
+    margin-right: 1rem;
+    background-color: thistle;
+    padding: .5rem .5rem 2rem .5rem;
+
+    &:not(:first-child) {
+      margin-left: 1rem;
+    }
+
+    &::after {
+      border-bottom: 1.25rem solid transparent;
+      border-left: 1.25rem solid thistle;
+      border-top: 1.25rem solid transparent;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 99%;
+    }
+  }
+}

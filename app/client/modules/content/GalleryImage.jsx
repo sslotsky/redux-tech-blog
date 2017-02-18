@@ -75,7 +75,7 @@ export class GalleryImage extends Component {
       <div className="image-picker">
         {img}
         <div>
-          <button onClick={() => this.setState({ visible: true })}>Click to choose image...</button>
+          <button type="button" onClick={() => this.setState({ visible: true })}>Click to choose image...</button>
           <Modal
             width="50%"
             effect="fadeInUp"

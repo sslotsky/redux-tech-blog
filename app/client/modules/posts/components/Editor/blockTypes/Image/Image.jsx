@@ -8,7 +8,7 @@ export default function Image({ input }) {
   })
 
   return (
-    <div className="soft-quarter outset">
+    <div className="soft-half outset">
       <GalleryImage url={input.value.url} onPick={onPick} />
     </div>
   )

@@ -57,6 +57,10 @@ export default reduxForm({
       if (block.format === 'video') {
         bv.validate('url').satisfies(required)
       }
+
+      if (['snippet', 'markdown'].includes(block.format)) {
+        bv.validate('text').satisfies(required)
+      }
     })
   })
 })(connect(undefined, actions)(Form))

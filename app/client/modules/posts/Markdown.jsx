@@ -1,7 +1,8 @@
 import React, { PropTypes, Component } from 'react'
-import { Markdown } from './Show'
+import { Markdown as ShowMarkdown } from './Show'
+import { collapsible } from 'SHARED/decorators'
 
-export default class extends Component {
+export class Markdown extends Component {
   static propTypes = {
     input: PropTypes.object
   }
@@ -27,8 +28,18 @@ export default class extends Component {
     const { text } = this.props.input.value
 
     return (
-      <Markdown text={text} onChange={::this.handleChange} />
+      <div>
+        <fieldset className="soft-half">
+          <div className="form-group">
+            <label>Text</label>
+            <ShowMarkdown text={text} onChange={::this.handleChange} />
+          </div>
+        </fieldset>
+      </div>
     )
   }
 }
 
+export default collapsible(ownProps => ({
+  title: 'Markdown'
+}))(Markdown)

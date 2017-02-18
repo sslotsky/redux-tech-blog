@@ -1,11 +1,8 @@
 import React from 'react'
 import { Markdown as MD } from 'MODULES/posts/Show'
+import { formField } from 'react-violet-forms'
 
-export default function Markdown({ input: { value, onChange, onBlur }, meta: { touched, error } }) {
-  const errors = touched && error && error.map((message, i) => (
-    <p className="error" key={i}>{message}</p>
-  ))
-
+export function Markdown({ input: { value, onChange, onBlur } }) {
   const focusChange = focused => {
     if (!focused) {
       onBlur(value)
@@ -13,12 +10,8 @@ export default function Markdown({ input: { value, onChange, onBlur }, meta: { t
   }
 
   return (
-    <div className="form-group">
-      <label>
-        Text
-        <MD text={value} onChange={onChange} onFocusChange={focusChange} />
-        {errors}
-      </label>
-    </div>
+    <MD text={value} onChange={onChange} onFocusChange={focusChange} />
   )
 }
+
+export default formField()(Markdown)

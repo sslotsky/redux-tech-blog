@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import { Field } from 'redux-form'
-import { Markdown as MarkdownField } from './components/Editor/blockTypes'
+import { MarkdownField } from './components/Editor/blockTypes'
 import { collapsible } from 'SHARED/decorators'
 
 export class Markdown extends Component {

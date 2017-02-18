@@ -2,7 +2,7 @@ import React from 'react'
 import { Markdown as MD } from 'MODULES/posts/Show'
 import { formField } from 'react-violet-forms'
 
-export function Markdown({ input: { value, onChange, onBlur } }) {
+export function MarkdownField({ input: { value, onChange, onBlur } }) {
   const focusChange = focused => {
     if (!focused) {
       onBlur(value)
@@ -14,4 +14,4 @@ export function Markdown({ input: { value, onChange, onBlur } }) {
   )
 }
 
-export default formField()(Markdown)
+export default formField()(MarkdownField)

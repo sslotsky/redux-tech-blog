@@ -267,6 +267,7 @@ ul.tag-box-pills {
   position: relative;
 
   .autocomplete {
+    z-index: 200;
     padding: 1rem;
     border: 1px solid rgb(238, 238, 238);
     border-radius: .25rem;

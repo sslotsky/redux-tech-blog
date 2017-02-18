@@ -1,7 +1,8 @@
 import React from 'react'
 import GalleryImage from 'MODULES/content/GalleryImage'
+import { collapsible } from 'SHARED/decorators'
 
-export default function Image({ input }) {
+export function Image({ input }) {
   const onPick = url => input.onChange({
     ...input.value,
     url
@@ -13,3 +14,7 @@ export default function Image({ input }) {
     </div>
   )
 }
+
+export default collapsible(ownProps => ({
+  title: 'Image'
+}))(Image)

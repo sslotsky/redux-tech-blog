@@ -41,7 +41,7 @@ export default class AddBlockButton extends Component {
     )
 
     return (
-      <div className="inline">
+      <div className="button-fly top">
         <button type="button" onClick={toggle}>Add Block</button>
         {flyout}
       </div>

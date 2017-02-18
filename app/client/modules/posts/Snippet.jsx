@@ -1,7 +1,8 @@
 import React, { PropTypes, Component } from 'react'
-import { Snippet } from './Show'
+import { Snippet as ShowSnippet } from './Show'
+import { collapsible } from 'SHARED/decorators'
 
-export default class extends Component {
+export class Snippet extends Component {
   static propTypes = {
     input: PropTypes.object
   }
@@ -37,27 +38,30 @@ export default class extends Component {
     const { language, text } = this.props.input.value
 
     return (
-      <fieldset className="soft-half">
-        <h3>Snippet ({language})</h3>
-        <div className="form-group">
-          <label>Language</label>
-          <select value={language} onChange={::this.changeLanguage}>
-            <option value='jsx'>JSX</option>
-            <option value='javascript'>JavaScript</option>
-            <option value='ruby'>Ruby</option>
-          </select>
-        </div>
-        <div className="form-group">
-          <label>Text</label>
-          <Snippet
-            language={language}
-            text={text}
-            onChange={::this.handleChange}
-          />
-        </div>
-      </fieldset>
+      <div>
+        <fieldset className="soft-half">
+          <div className="form-group">
+            <label>Language</label>
+            <select value={language} onChange={::this.changeLanguage}>
+              <option value='jsx'>JSX</option>
+              <option value='javascript'>JavaScript</option>
+              <option value='ruby'>Ruby</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <label>Text</label>
+            <ShowSnippet
+              language={language}
+              text={text}
+              onChange={::this.handleChange}
+            />
+          </div>
+        </fieldset>
+      </div>
     )
   }
 }
 
-
+export default collapsible(ownProps => ({
+  title: `Snippet (${ownProps.input.value.language})`
+}))(Snippet)

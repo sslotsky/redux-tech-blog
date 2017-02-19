@@ -19,6 +19,7 @@ export function renderBlock(member, index, fields) {
       <Field
         name={member}
         component={components[fields.get(index).format]}
+        removeBlock={() => fields.remove(index)}
       />
     </div>
   )
@@ -73,7 +74,7 @@ export default function Editor({
       <div className='button-list'>
         <AddBlockButton actions={actions} />
         <Save {...rest} />
-        <button type="button" onClick={toggle}>
+        <button type="button" disabled={rest.invalid || rest.pristine} onClick={toggle}>
           Preview
         </button>
       </div>

@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react'
 import { Field } from 'redux-form'
 import MarkdownField from './MarkdownField'
 import { collapsible } from 'SHARED/decorators'
+import { CloseWindow } from 'SHARED/components'
 
 export class Markdown extends Component {
   static propTypes = {
@@ -9,11 +10,12 @@ export class Markdown extends Component {
   }
 
   render() {
-    const { name } = this.props.input
+    const { input: { name }, removeBlock } = this.props
 
     return (
       <div>
-        <fieldset className="soft-half">
+        <fieldset className="soft-half relative">
+          <CloseWindow close={removeBlock} />
           <Field
             name={`${name}.text`}
             component={MarkdownField}

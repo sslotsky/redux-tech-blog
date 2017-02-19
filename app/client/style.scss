@@ -400,3 +400,19 @@ h2:hover i.edit {
     cursor: pointer;
   }
 }
+
+.close-window {
+  position: absolute;
+  top: .5rem;
+  right: .5rem;
+  font-size: .75rem;
+  background-color: transparent;
+  color: black;
+  padding: .25rem;
+  outline: none;
+  border-radius: .125rem;
+
+  &:hover {
+    background-color: thistle;
+  }
+}

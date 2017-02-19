@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react'
 import { Field } from 'redux-form'
 import SnippetField from './SnippetField'
 import { collapsible } from 'SHARED/decorators'
+import { CloseWindow } from 'SHARED/components'
 
 export class Snippet extends Component {
   static propTypes = {
@@ -19,11 +20,12 @@ export class Snippet extends Component {
   }
 
   render() {
-    const { value: { language }, name } = this.props.input
+    const { removeBlock, input: { value: { language }, name } } = this.props
 
     return (
       <div>
-        <fieldset className="soft-half">
+        <fieldset className="soft-half relative">
+          <CloseWindow close={removeBlock} />
           <div className="form-group">
             <label>Language</label>
             <select value={language} onChange={::this.changeLanguage}>

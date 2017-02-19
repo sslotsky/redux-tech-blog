@@ -19,6 +19,16 @@ export default function postsController(routes) {
     })
   })
 
+  authorized.patch('/posts/:id', (req, res) => {
+    posts.update(req.params.id, req.body).then(p => res.json({ post: p })).catch(e => {
+      if (e instanceof ValidationException) {
+        res.status(422).json({ errors: e.errors })
+      } else {
+        throw e
+      }
+    })
+  })
+
   open.get('/posts', (req, res) => {
     posts.list(req.query.page, req.query.pageSize).then(payload => res.json(payload))
   })

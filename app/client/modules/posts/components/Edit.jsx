@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { loading } from 'SHARED/decorators'
-import { fetchPost, submit } from 'MODULES/posts/actions'
+import { fetchPost, update } from 'MODULES/posts/actions'
 import Form from './Form'
 
 export class Edit extends Component {
@@ -26,6 +26,6 @@ export default connect(
   state => ({ post: state.post.get('post') }),
   (dispatch, ownProps) => ({
     load: () => dispatch(fetchPost(ownProps.params.id)),
-    handleSubmit: data => dispatch(submit(data))
+    handleSubmit: data => dispatch(update(ownProps.params.id, data))
   })
 )(loading(Edit))

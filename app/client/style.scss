@@ -363,7 +363,7 @@ h2:hover i.edit {
     display: inline-block;
     margin-right: 1rem;
     background-color: thistle;
-    padding: .5rem .5rem 2rem .5rem;
+    padding: .5rem .5rem 2rem 1.5rem;
 
     &:not(:first-child) {
       margin-left: 1rem;
@@ -376,7 +376,19 @@ h2:hover i.edit {
       content: '';
       position: absolute;
       top: 0;
-      left: 99%;
+      left: 100%;
+    }
+
+    &::before {
+      background: #fff;
+      border-radius: 2rem;
+      box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+      content: '';
+      height: .5rem;
+      left: .5rem;
+      position: absolute;
+      width: .5rem;
+      top: 1rem;
     }
   }
 }

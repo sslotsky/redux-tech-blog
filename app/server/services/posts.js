@@ -7,8 +7,22 @@ export function create({ blocks, tags, ...rest }) {
   }
 
   return Post.forge(attributes).save().then(post => {
-    return post.tags().attach(tags).then(() => post.refresh())
+    return post.tags().attach(tags.map(t => t.id)).then(() => post.refresh())
   })
+}
+
+export function update(id, post) {
+  const { blocks, tags, ...rest } = post
+  const attributes = {
+    blocks: JSON.stringify(blocks),
+    ...rest
+  }
+
+  return Post.forge({ id }).save(attributes).then(post =>
+    post.tags().detach().then(() =>
+      post.tags().attach(tags.map(t => t.id)).then(() => post.refresh())
+    )
+  )
 }
 
 export function show(id) {
@@ -18,7 +32,7 @@ export function show(id) {
 }
 
 export function list(page = 1, pageSize = 10) {
-  return Post.fetchPage({
+  return Post.forge().orderBy('-created_at').fetchPage({
     page,
     pageSize,
     withRelated: ['tags']

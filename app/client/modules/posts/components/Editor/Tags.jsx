@@ -27,7 +27,7 @@ export default function Tags({ search, input: tags, create }) {
   }
 
   const remove = tag => {
-    tags.onChange(tags.value.filter(id => id !== tag.value))
+    tags.onChange(tags.value.filter(t => t.id !== tag.value))
   }
 
   const selected = tags.value.map(clientTag)

@@ -24,3 +24,12 @@ export function submit(data) {
     throw new SubmissionError(e.response.data.errors)
   })
 }
+
+export function update(id, data) {
+  return dispatch => api.posts.update(id, data).then(() => {
+    dispatch(pageActions.expire())
+    dispatch(push('/'))
+  }).catch(e => {
+    throw new SubmissionError(e.response.data.errors)
+  })
+}

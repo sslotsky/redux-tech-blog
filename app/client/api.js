@@ -33,6 +33,7 @@ export default {
   posts: {
     browse: query => adapter.get('/posts', { params: query }),
     create: data => adapter.post('/posts', data),
+    update: (id, data) => adapter.patch(`/posts/${id}`, data),
     show: id => adapter.get(`/posts/${id}`)
   },
   tags: {

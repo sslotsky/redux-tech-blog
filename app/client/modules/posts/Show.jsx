@@ -1,10 +1,13 @@
 import React, { PropTypes, Component } from 'react'
 import ReactMarkdown from 'react-markdown'
 import CodeMirror from 'react-codemirror'
-import 'codemirror/mode/jsx/jsx'
-import 'codemirror/mode/javascript/javascript'
-import 'codemirror/mode/ruby/ruby'
-import 'codemirror/mode/markdown/markdown'
+
+if (typeof(navigator) !== 'undefined') {
+  require('codemirror/mode/jsx/jsx')
+  require('codemirror/mode/javascript/javascript')
+  require('codemirror/mode/ruby/ruby')
+  require('codemirror/mode/markdown/markdown')
+}
 
 export class Snippet extends Component {
   static propTypes = {

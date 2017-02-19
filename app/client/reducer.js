@@ -1,4 +1,3 @@
-import { profile } from './modules/profile/reducers'
 import session from './modules/session/reducer'
 import { combineReducers } from 'redux'
 import { routerReducer as routing } from 'react-router-redux'
@@ -10,7 +9,6 @@ import post from 'MODULES/posts/reducer'
 import { fetchPosts } from 'MODULES/posts/actions'
 
 export default combineReducers({
-  profile,
   routing,
   session,
   form: formReducer,

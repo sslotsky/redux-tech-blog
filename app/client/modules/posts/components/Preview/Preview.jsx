@@ -49,7 +49,7 @@ export default function Preview({ toggle, ...rest }) {
         name="blocks"
         component={BlockPreview}
       />
-      <div className='button-list pull-right'>
+      <div className='button-list text-right'>
         <Save {...rest} />
         <button onClick={toggle}>
           Edit

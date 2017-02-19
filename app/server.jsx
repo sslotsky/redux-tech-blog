@@ -6,8 +6,8 @@ import cookieParser from 'cookie-parser'
 import multiparty from 'connect-multiparty'
 import cors from 'cors'
 
-import template from './template'
 import apiRoutes from './server/apiRoutes'
+import renderClient from './serverRendering'
 
 const app = express()
 const port = 9999
@@ -22,13 +22,9 @@ app.use(bodyParser.json())
 app.use(multiparty())
 app.use(morgan('dev'))
 
-function handleRender(req, resp) {
-  resp.send(template())
-}
-
 app.use('/api', apiRoutes.open);
 app.use('/api', apiRoutes.authorized);
 
-app.use(handleRender)
+app.use(renderClient)
 
 app.listen(port)

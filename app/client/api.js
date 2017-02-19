@@ -1,8 +1,10 @@
 import axios from 'axios'
 import PubSub from 'pubsub-js'
 
+const base = typeof(API_BASE) === 'undefined' ? '/api' : API_BASE
+
 export const adapter = axios.create({
-  baseURL: API_BASE,
+  baseURL: base,
   timeout: 10000,
   withCredentials: true,
   headers: {

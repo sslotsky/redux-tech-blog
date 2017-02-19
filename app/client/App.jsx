@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router'
 import Sidebar from './Sidebar'
 import ToggleSession from 'MODULES/session/components/ToggleSession'
-import 'CLIENT/style.scss'
 
 export default ({ children }) => (
   <div>

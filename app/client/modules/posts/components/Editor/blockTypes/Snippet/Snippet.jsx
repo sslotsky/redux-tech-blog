@@ -36,6 +36,7 @@ export class Snippet extends Component {
             name={`${name}.text`}
             component={SnippetField}
             language={language}
+            label="Text"
           />
         </fieldset>
       </div>

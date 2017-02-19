@@ -17,6 +17,7 @@ export class Markdown extends Component {
           <Field
             name={`${name}.text`}
             component={MarkdownField}
+            label="Text"
           />
         </fieldset>
       </div>

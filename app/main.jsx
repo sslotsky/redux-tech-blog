@@ -14,23 +14,14 @@ import DevTools from 'CLIENT/DevTools'
 import { authenticated, logout } from 'MODULES/session/actions'
 import routes from 'CLIENT/config/routes'
 import reducer from 'CLIENT/reducer'
+import preloadedState from './preloadedState'
 import 'CLIENT/style.scss'
 
 const router = routerMiddleware(browserHistory)
 
-const { session, content, post, posts, ...rest } = window.__PRELOADED_STATE__
-
-const state = {
-  session: Immutable.fromJS(session),
-  content: Immutable.fromJS(content),
-  post: Immutable.fromJS(post),
-  posts: Immutable.fromJS(posts),
-  ...rest
-}
-
 const store = createStore(
   reducer,
-  state,
+  preloadedState(),
   compose(applyMiddleware(router, thunk), DevTools.instrument())
 )
 

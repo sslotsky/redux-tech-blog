@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react'
-import { Snippet as ShowSnippet } from './Show'
+import { Field } from 'redux-form'
+import SnippetField from './SnippetField'
 import { collapsible } from 'SHARED/decorators'
 
 export class Snippet extends Component {
@@ -17,25 +18,8 @@ export class Snippet extends Component {
     input.onChange(val)
   }
 
-  handleChange(text) {
-    const { input } = this.props
-    const val = {
-      ...input.value,
-      text
-    }
-
-    input.onChange(val)
-  }
-
-  shouldComponentUpdate(nextProps) {
-    const { text, language } = this.props.input.value
-    const { value } = nextProps.input
-
-    return text != value.text || language != value.language
-  }
-
   render() {
-    const { language, text } = this.props.input.value
+    const { value: { language }, name } = this.props.input
 
     return (
       <div>
@@ -48,14 +32,11 @@ export class Snippet extends Component {
               <option value='ruby'>Ruby</option>
             </select>
           </div>
-          <div className="form-group">
-            <label>Text</label>
-            <ShowSnippet
-              language={language}
-              text={text}
-              onChange={::this.handleChange}
-            />
-          </div>
+          <Field
+            name={`${name}.text`}
+            component={SnippetField}
+            language={language}
+          />
         </fieldset>
       </div>
     )

@@ -4,9 +4,7 @@ import { FormInput, Save } from 'react-violet-forms'
 import Tags from './Tags'
 import AddBlockButton from './AddBlockButton'
 
-import Snippet from 'POSTS/Snippet'
-import { Markdown } from './blockTypes'
-import { Video, Image } from './blockTypes'
+import { Video, Image, Markdown, Snippet } from './blockTypes'
 
 const components = {
   snippet: Snippet,

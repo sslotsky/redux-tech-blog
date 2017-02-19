@@ -1,3 +1,3 @@
 export Video from './Video'
 export Image from './Image'
-export MarkdownField from './MarkdownField'
+export Markdown from './Markdown'

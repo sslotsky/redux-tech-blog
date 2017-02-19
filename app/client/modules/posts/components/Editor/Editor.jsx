@@ -5,7 +5,7 @@ import Tags from './Tags'
 import AddBlockButton from './AddBlockButton'
 
 import Snippet from 'POSTS/Snippet'
-import Markdown from 'POSTS/Markdown'
+import { Markdown } from './blockTypes'
 import { Video, Image } from './blockTypes'
 
 const components = {

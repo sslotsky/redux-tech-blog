@@ -33,3 +33,7 @@ export function update(id, data) {
     throw new SubmissionError(e.response.data.errors)
   })
 }
+
+export function clear() {
+  return { type: actionTypes.CLEAR }
+}

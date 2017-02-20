@@ -13,6 +13,11 @@ function setPost(state, action) {
   return state.merge({ post: action.post })
 }
 
+function clearPost() {
+  return initialState
+}
+
 export default resolveEach(initialState, {
-  [actionTypes.FETCHED]: setPost
+  [actionTypes.FETCHED]: setPost,
+  [actionTypes.CLEAR]: clearPost
 })

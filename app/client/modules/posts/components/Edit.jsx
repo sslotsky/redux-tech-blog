@@ -2,12 +2,16 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { loading } from 'SHARED/decorators'
-import { fetchPost, update } from 'MODULES/posts/actions'
+import { fetchPost, update, clear } from 'MODULES/posts/actions'
 import Form from './Form'
 
 export class Edit extends Component {
   componentDidMount() {
     this.props.load()
+  }
+
+  componentWillUnmount() {
+    this.props.clearPost()
   }
 
   render() {
@@ -26,6 +30,7 @@ export default connect(
   state => ({ post: state.post.get('post') }),
   (dispatch, ownProps) => ({
     load: () => dispatch(fetchPost(ownProps.params.id)),
-    handleSubmit: data => dispatch(update(ownProps.params.id, data))
+    handleSubmit: data => dispatch(update(ownProps.params.id, data)),
+    clearPost: () => dispatch(clear())
   })
 )(loading(Edit))

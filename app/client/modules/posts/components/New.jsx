@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Form from './Form'
 import * as actions from '../actions'
 
-function New({ profile, submit }) {
+function New({ submit }) {
   return (
     <Form
       onSubmit={submit}
@@ -12,10 +12,4 @@ function New({ profile, submit }) {
   )
 }
 
-function mapStateToProps(state) {
-  return {
-    profile: state.profile.toJS()
-  }
-}
-
-export default connect(mapStateToProps, actions)(New)
+export default connect(undefined, actions)(New)

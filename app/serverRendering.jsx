@@ -24,7 +24,7 @@ const preload = (store, query, params) => ({
   }
 })
 
-export default function(req, resp) {
+export default function(req, res) {
   const memoryHistory = createMemoryHistory(req.path)
   const router = routerMiddleware(memoryHistory)
 
@@ -35,18 +35,22 @@ export default function(req, resp) {
 
   const history = syncHistoryWithStore(memoryHistory, store)
 
-  if (req.currentUser) {
-    store.dispatch(authenticated(req.currentUser))
-  }
-
   match({ history, routes, location: req.url }, (error, redirectLocation, renderProps) => {
     if (error) {
       res.status(500).send(error.message)
     } else if (redirectLocation) {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search)
     } else if (renderProps) {
-      const { components, query, params } = renderProps
+      const { components, routes, query, params } = renderProps
       const component = components[components.length - 1]
+      const route = routes[routes.length - 1]
+
+      if (req.currentUser) {
+        store.dispatch(authenticated(req.currentUser))
+      } else if (route.auth) {
+        res.redirect('/login')
+      }
+
       const handler = preload(store, query, params)[component]
       const promise = handler ? handler() : Promise.resolve()
 
@@ -58,7 +62,7 @@ export default function(req, resp) {
         )
 
         const preloadedState = store.getState()
-        resp.send(template(html, preloadedState))
+        res.send(template(html, preloadedState))
       })
     }
   })

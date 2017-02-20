@@ -11,10 +11,10 @@ import Content from 'MODULES/content/Content'
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={Browse} />
-    <Route path='posts/new' component={New} />
-    <Route path='posts/:id/edit' component={Edit} />
+    <Route path='posts/new' auth={true} component={New} />
+    <Route path='posts/:id/edit' auth={true} component={Edit} />
+    <Route path='content' auth={true} component={Content} />
     <Route path="login" component={Login} />
-    <Route path="content" component={Content} />
   </Route>
 )
 

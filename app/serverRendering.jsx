@@ -42,8 +42,8 @@ export default function(req, resp) {
     } else if (renderProps) {
       const { components, query, params } = renderProps
       const component = components[components.length - 1]
-      const handler = preload(store)[component]
-      const promise = handler ? handler(store, query, params) : Promise.resolve()
+      const handler = preload(store, query, params)[component]
+      const promise = handler ? handler() : Promise.resolve()
 
       promise.then(() => {
         const html = renderToString(

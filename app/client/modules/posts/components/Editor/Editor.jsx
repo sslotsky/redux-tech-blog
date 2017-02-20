@@ -74,7 +74,7 @@ export default function Editor({
       <div className='button-list'>
         <AddBlockButton actions={actions} />
         <Save {...rest} />
-        <button type="button" disabled={rest.invalid || rest.pristine} onClick={toggle}>
+        <button type="button" disabled={rest.invalid} onClick={toggle}>
           Preview
         </button>
       </div>

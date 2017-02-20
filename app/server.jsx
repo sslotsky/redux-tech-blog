@@ -27,6 +27,14 @@ app.use(requestDecoder)
 app.use('/api', apiRoutes.open)
 app.use('/api', apiRoutes.authorized)
 
+app.use((err, req, res, next) => {
+  if (err instanceof ValidationException) {
+    res.status(422).json({ errors: err.errors })
+  } else {
+    throw err
+  }
+})
+
 app.use(renderClient)
 
 app.listen(port)

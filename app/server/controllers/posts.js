@@ -4,29 +4,17 @@ import { ValidationException } from '../validation'
 export default function postsController(routes) {
   const { authorized, open } = routes
 
-  authorized.post('/posts', (req, res) => {
+  authorized.post('/posts', (req, res, next) => {
     const post = {
       author_id: req.currentUser.id,
       ...req.body
     }
 
-    posts.create(post).then(p => res.json({ post: p })).catch(e => {
-      if (e instanceof ValidationException) {
-        res.status(422).json({ errors: e.errors })
-      } else {
-        throw e
-      }
-    })
+    posts.create(post).then(p => res.json({ post: p })).catch(next)
   })
 
-  authorized.patch('/posts/:id', (req, res) => {
-    posts.update(req.params.id, req.body).then(p => res.json({ post: p })).catch(e => {
-      if (e instanceof ValidationException) {
-        res.status(422).json({ errors: e.errors })
-      } else {
-        throw e
-      }
-    })
+  authorized.patch('/posts/:id', (req, res, next) => {
+    posts.update(req.params.id, req.body).then(p => res.json({ post: p })).catch(next)
   })
 
   open.get('/posts', (req, res) => {

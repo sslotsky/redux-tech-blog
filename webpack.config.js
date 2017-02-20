@@ -1,6 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
 var BrowserSyncPlugin = require('browser-sync-webpack-plugin')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: './index.js',
@@ -22,13 +23,16 @@ module.exports = {
       loader: "file-loader"
     }, {
       test: /\.scss$/,
-      loaders: ["style", "css", "sass"]
+      loader: ExtractTextPlugin.extract('css!sass')
     }, {
       test: /\.json/,
       loader: 'json'
     }]
   },
   plugins: [
+    new ExtractTextPlugin('styles.css', {
+      allChunks: true
+    }),
     new webpack.EnvironmentPlugin(['MARMALADE_AWS_ACCESS', 'MARMALADE_AWS_SECRET']),
     new webpack.DefinePlugin({
       API_BASE: JSON.stringify('/api')

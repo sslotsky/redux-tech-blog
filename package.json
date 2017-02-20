@@ -39,6 +39,7 @@
     "cors": "^2.8.1",
     "csrf": "^3.0.4",
     "express": "^4.14.0",
+    "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
     "json-loader": "^0.5.4",
     "jsonwebtoken": "^7.2.1",

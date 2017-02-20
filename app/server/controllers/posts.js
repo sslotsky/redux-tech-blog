@@ -6,7 +6,7 @@ export default function postsController(routes) {
 
   authorized.post('/posts', (req, res) => {
     const post = {
-      author_id: req.decoded.id,
+      author_id: req.currentUser.id,
       ...req.body
     }
 

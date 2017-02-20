@@ -13,6 +13,7 @@ import template from './template'
 import Browse from 'MODULES/posts/components/Browse'
 import * as posts from 'SERVICES/posts'
 import { composables } from 'violet-paginator'
+import { authenticated } from 'MODULES/session/actions'
 
 const preload = (store, query, params) => ({
   [Browse]: () => {
@@ -33,6 +34,10 @@ export default function(req, resp) {
   )
 
   const history = syncHistoryWithStore(memoryHistory, store)
+
+  if (req.currentUser) {
+    store.dispatch(authenticated(req.currentUser))
+  }
 
   match({ history, routes, location: req.url }, (error, redirectLocation, renderProps) => {
     if (error) {

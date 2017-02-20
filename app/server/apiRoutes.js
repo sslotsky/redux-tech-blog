@@ -1,6 +1,6 @@
 import express from 'express'
 
-import { secureRoutes } from './authenticator'
+import { secureRoutes } from './auth/authenticator'
 import * as users from './services/users'
 import { posts, tags, assets, registerRoutes } from './controllers'
 

@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser'
 import multiparty from 'connect-multiparty'
 import cors from 'cors'
 
+import { requestDecoder } from './server/auth/authIn'
 import apiRoutes from './server/apiRoutes'
 import renderClient from './serverRendering'
 
@@ -22,8 +23,9 @@ app.use(bodyParser.json())
 app.use(multiparty())
 app.use(morgan('dev'))
 
-app.use('/api', apiRoutes.open);
-app.use('/api', apiRoutes.authorized);
+app.use(requestDecoder)
+app.use('/api', apiRoutes.open)
+app.use('/api', apiRoutes.authorized)
 
 app.use(renderClient)
 

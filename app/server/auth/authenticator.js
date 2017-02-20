@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt-nodejs'
-
-const SECRET = 'yaybourbon'
+import SECRET from './secret'
 
 export function secureRoutes(routes, options) {
   routes.post('/authenticate', (req, res) => {
@@ -26,19 +25,15 @@ export function secureRoutes(routes, options) {
   })
 
   routes.use((req, res, next) => {
-    const token = req.body['auth-token'] || req.cookies['auth-token']
-    if (token) {
-      jwt.verify(token, SECRET, (err, decoded) => {
-        if (err) {
-          return res.status(403).json({ message: 'Failed to authenticate token' })
-        } else {
-          req.decoded = decoded
-          next()
-        }
-      })
-    } else {
+    if (req.authFailed) {
+      return res.status(403).json({ message: 'Failed to authenticate token' })
+    }
+
+    if (!req.tokenProvided) {
       return res.status(403).json({ message: 'No token provided' })
     }
+
+    next()
   })
 
   return routes

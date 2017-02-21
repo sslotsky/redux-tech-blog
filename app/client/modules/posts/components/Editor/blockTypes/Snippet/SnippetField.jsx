@@ -2,7 +2,7 @@ import React from 'react'
 import { Snippet } from 'MODULES/posts/Show'
 import { formField } from 'react-violet-forms'
 
-export function SnippetField({ input: { value, onChange, onBlur }, language }) {
+export function SnippetField({ input: { value, onChange, onBlur }, ...rest }) {
   const focusChange = focused => {
     if (!focused) {
       onBlur(value)
@@ -10,7 +10,7 @@ export function SnippetField({ input: { value, onChange, onBlur }, language }) {
   }
 
   return (
-    <Snippet text={value} onChange={onChange} onFocusChange={focusChange} language={language} />
+    <Snippet text={value} onChange={onChange} onFocusChange={focusChange} {...rest} />
   )
 }
 

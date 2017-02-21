@@ -31,7 +31,9 @@ class Form extends Component {
 
 function actions(dispatch) {
   return {
-    addSnippet: language => () => dispatch(arrayPush('post', 'blocks', { format: 'snippet', language })),
+    addSnippet: language => () => dispatch(
+      arrayPush('post', 'blocks', { format: 'snippet', theme: 'erlang-dark', language })
+    ),
     addBlock: format => () => dispatch(arrayPush('post', 'blocks', { format })),
     ...bindActionCreators({
       searchTags: search,

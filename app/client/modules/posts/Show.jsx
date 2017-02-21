@@ -17,14 +17,17 @@ export class Snippet extends Component {
   }
 
   static defaultProps = {
-    text: ''
+    text: '',
+    theme: 'erlang-dark'
   }
 
   options() {
+    const { theme, options, language } = this.props
+
     return {
-      theme: 'erlang-dark',
-      ...this.props.options,
-      mode: this.props.language,
+      theme,
+      ...options,
+      mode: this.props.language
     }
   }
 

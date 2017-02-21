@@ -1,49 +1,101 @@
 import React, { PropTypes, Component } from 'react'
 import { Field } from 'redux-form'
+import { Select } from 'react-violet-forms'
 import SnippetField from './SnippetField'
 import { collapsible } from 'SHARED/decorators'
 import { CloseWindow } from 'SHARED/components'
 
-export class Snippet extends Component {
-  static propTypes = {
-    input: PropTypes.object
-  }
+const languageOptions = [{
+  value: 'jsx',
+  text: 'JSX',
+}, {
+  value: 'javascript',
+  text: 'JavaScript'
+}, {
+  value: 'ruby',
+  text: 'Ruby'
+}]
 
-  changeLanguage(e) {
-    const { input } = this.props
-    const val = {
-      ...input.value,
-      language: e.target.value
-    }
+const themeOptions = [
+  '3024-day',
+  '3024-night',
+  'abcdef',
+  'ambiance-mobile',
+  'ambiance',
+  'base16-dark',
+  'base16-light',
+  'bespin',
+  'blackboard',
+  'cobalt',
+  'colorforth',
+  'dracula',
+  'duotone-dark',
+  'duotone-light',
+  'eclipse',
+  'elegant',
+  'erlang-dark',
+  'hopscotch',
+  'icecoder',
+  'isotope',
+  'lesser-dark',
+  'liquibyte',
+  'material',
+  'mbo',
+  'mdn-like',
+  'midnight',
+  'monokai',
+  'neat',
+  'neo',
+  'night',
+  'panda-syntax',
+  'paraiso-dark',
+  'paraiso-light',
+  'pastel-on-dark',
+  'railscasts',
+  'rubyblue',
+  'seti',
+  'solarized',
+  'the-matrix',
+  'tomorrow-night-bright',
+  'tomorrow-night-eighties',
+  'ttcn',
+  'twilight',
+  'vibrant-ink',
+  'xq-dark',
+  'xq-light',
+  'yeti',
+  'zenburn'
+].map(theme => ({ text: theme, value: theme }))
 
-    input.onChange(val)
-  }
-
-  render() {
-    const { removeBlock, input: { value: { language }, name } } = this.props
-
-    return (
-      <div>
-        <fieldset className="soft-half relative">
-          <CloseWindow close={removeBlock} />
-          <div className="form-group">
-            <label>Language</label>
-            <select value={language} onChange={::this.changeLanguage}>
-              <option value='jsx'>JSX</option>
-              <option value='javascript'>JavaScript</option>
-              <option value='ruby'>Ruby</option>
-            </select>
-          </div>
+export function Snippet({ removeBlock, input: { name, value: { language, theme } } }) {
+  return (
+    <div>
+      <fieldset className="soft-half relative">
+        <CloseWindow close={removeBlock} />
+        <div className="form-group">
           <Field
-            name={`${name}.text`}
-            component={SnippetField}
-            language={language}
-            label="Text"
+            name={`${name}.language`}
+            component={Select}
+            options={languageOptions}
+            label="Language"
           />
-        </fieldset>
-      </div>
-    )
-  }
+          <Field
+            name={`${name}.theme`}
+            component={Select}
+            options={themeOptions}
+            label="Theme"
+          />
+        </div>
+        <Field
+          name={`${name}.text`}
+          component={SnippetField}
+          language={language}
+          theme={theme}
+          label="Text"
+        />
+      </fieldset>
+    </div>
+  )
 }
 
 export default collapsible(ownProps => ({

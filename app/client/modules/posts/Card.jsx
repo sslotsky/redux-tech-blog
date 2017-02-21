@@ -8,7 +8,7 @@ import { cardSource, cardTarget, collectSource, collectTarget } from './dragDrop
 import classnames from 'classnames'
 import { Video, Image } from './components/cardTypes'
 
-function SnippetCard({ language, text }) {
+function SnippetCard({ language, text, theme }) {
   const options = {
     readOnly: true,
     scrollbarStyle: 'null',
@@ -20,6 +20,7 @@ function SnippetCard({ language, text }) {
       options={options}
       language={language}
       text={text}
+      theme={theme}
     />
   )
 }

@@ -30,7 +30,7 @@ const components = {
 
 const Edit = owned(({ post }) => (
   <Link to={`/posts/${post.get('id')}/edit`}>
-    <i className="fa fa-pencil edit"></i>
+    <i className="fa fa-pencil m-l-1"></i>
   </Link>
 ))
 
@@ -40,8 +40,11 @@ export function renderPost(post, i) {
 
   return (
     <div key={i}>
-      <h2>
+      <h2 className="icon-toggle">
         {post.get('title')}
+        <Link to={`/posts/${post.get('id')}`}>
+          <i className="fa fa-eye m-l-1"></i>
+        </Link>
         <Edit id={post.get('author_id')} post={post} />
       </h2>
       <div className="list-preview">

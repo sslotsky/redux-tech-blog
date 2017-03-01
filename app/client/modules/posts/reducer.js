@@ -1,11 +1,11 @@
-import { Map } from 'immutable'
+import { Map, List } from 'immutable'
 import { resolveEach } from 'redux-resolver'
 import * as actionTypes from './actionTypes'
 
 const initialState = Map({
   post: Map({
-    blocks: [],
-    tags: []
+    blocks: List(),
+    tags: List()
   })
 })
 

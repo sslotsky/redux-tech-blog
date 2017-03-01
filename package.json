@@ -72,7 +72,7 @@
     "redux-thunk": "^2.2.0",
     "s3": "^4.4.0",
     "url-loader": "^0.5.7",
-    "validate-this": "^1.2.4",
+    "validate-this": "^1.2.5",
     "violet-paginator": "^2.0.5"
   }
 }

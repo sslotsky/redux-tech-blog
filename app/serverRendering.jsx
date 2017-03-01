@@ -11,9 +11,11 @@ import routes from 'CLIENT/config/routes'
 import reducer from 'CLIENT/reducer'
 import template from './template'
 import Browse from 'MODULES/posts/components/Browse'
+import Read from 'MODULES/posts/components/Read'
 import * as posts from 'SERVICES/posts'
 import { composables } from 'violet-paginator'
 import { authenticated } from 'MODULES/session/actions'
+import { fetched } from 'MODULES/posts/actions'
 
 const preload = (store, query, params) => ({
   [Browse]: () => {
@@ -21,6 +23,9 @@ const preload = (store, query, params) => ({
       const pageActions = composables({ listId: 'posts', preloaded: payload })
       return store.dispatch(pageActions.initialize())
     })
+  },
+  [Read]: () => {
+    return posts.show(params.id).then(post => store.dispatch(fetched(post)))
   }
 })
 

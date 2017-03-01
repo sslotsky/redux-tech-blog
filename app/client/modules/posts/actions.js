@@ -10,9 +10,16 @@ export function fetchPosts({ query }) {
   return () => api.posts.browse(query)
 }
 
+export function fetched(post) {
+  return {
+    type: actionTypes.FETCHED,
+    post
+  }
+}
+
 export function fetchPost(id) {
   return dispatch => api.posts.show(id).then(resp =>
-    dispatch({ type: actionTypes.FETCHED, post: resp.data })
+    dispatch(fetched(resp.data))
   )
 }
 

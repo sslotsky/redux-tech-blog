@@ -4,22 +4,15 @@ import { Save } from 'react-violet-forms'
 
 import Cards from 'POSTS/Cards'
 import Blocks from './Blocks'
+import Tags from '../Tags/Tags'
 
 const Title = ({ input: { value: title } }) => (
   <h1 className="post-title">{title}</h1>
 )
 
 function renderTags({ input: { value: tags } }) {
-  const renderTag = (tag, i) => (
-    <li key={i} className="tag">
-      <span>{tag.name}</span>
-    </li>
-  )
-
   return (
-    <ul className="tag-preview">
-      {tags.map(renderTag)}
-    </ul>
+    <Tags tags={tags} />
   )
 }
 

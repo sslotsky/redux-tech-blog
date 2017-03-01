@@ -50,6 +50,10 @@
 @import '../../node_modules/codemirror/theme/zenburn.css';
 @import '../../node_modules/codemirror/lib/codemirror.css';
 
+.m-l-1 {
+  margin-left: 1rem;
+}
+
 .inline {
   display: inline-block;
 }
@@ -393,14 +397,8 @@ button[disabled] {
   margin-bottom: 1rem;
 }
 
-h2 i.edit {
-  visibility: hidden;
+.icon-toggle i.fa {
   font-size: 1rem;
-  margin-left: 1rem;
-}
-
-h2:hover i.edit {
-  visibility: visible;
 }
 
 .tag-preview {
@@ -462,4 +460,8 @@ h2:hover i.edit {
   &:hover {
     background-color: thistle;
   }
+}
+
+.post .block {
+  margin-bottom: 1rem;
 }

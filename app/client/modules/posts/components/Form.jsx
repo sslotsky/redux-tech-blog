@@ -6,6 +6,7 @@ import { validator } from 'validate-this'
 import Editor from './Editor/Editor'
 import Preview from './Preview/Preview'
 import { search, create } from 'MODULES/tags/actions'
+import { renderAfterMount } from 'SHARED/decorators'
 
 class Form extends Component {
   state = {
@@ -48,7 +49,7 @@ const required = val => {
   }
 }
 
-export default reduxForm({
+export default renderAfterMount(reduxForm({
   form: 'post',
   enableReinitialize: true,
   validate: values => validator(values, v => {
@@ -65,4 +66,4 @@ export default reduxForm({
       }
     })
   })
-})(connect(undefined, actions)(Form))
+})(connect(undefined, actions)(Form)))
